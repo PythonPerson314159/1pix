@@ -159,7 +159,7 @@ clickbbs=[]
 }
 
 function draw() {
-  if (millis()-off+10    >=0&&millis()-off-deltaTime-10<=0){
+  if (millis()-off+deltaTime>0&&millis()-off-deltaTime=0){
   mySound.stop()
     
   mySound.play()
@@ -550,7 +550,7 @@ function mouseReleased(){
   body, html {
   margin: 0;
   padding: 0;
-  height: 30%;
+  height: 70%;
   justify-content: center;
   align-items: center;
     display: flex;
