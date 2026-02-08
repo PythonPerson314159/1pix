@@ -11,7 +11,9 @@
    <h1 id="wqww"></h1>
             <div id="canvas-container"></div>
     <script>
-    
+    document.addEventListener('contextmenu', function (event) {
+  event.preventDefault();
+});   
 
 const dw = (content) => {
     // fileName consists the name of the file
@@ -42,10 +44,12 @@ file=file.split("޶޶޶")
   songid=file[3]
   soundFormats('mp3', 'ogg');
   mySound = loadSound('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/'+songid+'.mp3');
+  	  qd = loadFont('fontt.ttf'); 
 }
 
 
 function setup() {
+  textFont(qd)
     inv=0
 
   pref=localStorage.getItem("pref")+"q"
@@ -53,7 +57,6 @@ function setup() {
     pref="111q"
   }
   pref.replace("q",'')
-  textFont("Verdana")
 canvas=  createCanvas(window.width*0.7,300);
   asd=1
   www=0
@@ -540,20 +543,29 @@ function mouseReleased(){
 </html>
 
 <style>
+  @font-face {
+  font-family: 'eee';
+    src: url('fontt.ttf')
+  }
   body, html {
   margin: 0;
   padding: 0;
-  height: 100%;
+  height: 30%;
   justify-content: center;
   align-items: center;
-}
+    display: flex;
+  font-family: 'eee';}
 
 #canvas-container {
   justify-content: center;
   align-items: center;
+    display: flex;
+  
 }
   h1{
   color: #ff0000;
     text-align: center;
+  font-family: 'eee';
+    
   }
 </style>
