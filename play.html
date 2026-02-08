@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/p5.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/p5@1.11.11/lib/addons/p5.sound.min.js"></script>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <meta charset="utf-8" />
+
+  </head>
+  <body>
+    <main>
+    </main>
+    <script>
+    
+const dw = (content) => {
+    // fileName consists the name of the file
+    const text =content ;
+    const element = document.createElement('a');
+    const file = new Blob([text], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = "1pix_map.1pix";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  };
+
+/*
+const url = 'https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/000000.mp3'
+fetch(url)
+  .then(response => console.log(response))
+  .catch(err => console.error('Error loading script:', err));   
+*/
+ress=500
+  off=ress
+
+function preload() {
+  eeee="ʮʮʮʮʮʮʮʮʮƭVƭƭƭVƭƭƭVƭƭƭVƭƭ3ϩϩϨˇˇˇˇˇˇˇϩϩϨʮŗϩʮʮŗϩʮϩϩ:ʮϩŴʮ"
+  file="MAP 0000000޶޶޶the first level YAY޶޶޶1203޶޶޶000000޶޶޶"+eeee
+file=file.split("޶޶޶")
+
+  songid=file[3]
+  soundFormats('mp3', 'ogg');
+  mySound = loadSound('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/'+songid+'.mp3');
+}
+
+
+function setup() {
+  pref="111"
+  textFont("Verdana")
+canvas=  createCanvas(window.screen.width,window.screen.height);
+  asd=1
+  www=0
+  /*https://raw.githubusercontent.com/iamaverycoolperson29/a/refs/heads/main/map000000.1pix
+  */
+  
+  
+  
+  patt=[1000,10,1000,123,2345]
+  
+  for (w in patt){
+    if (patt[w]>1000){
+      thinn=[]
+for (x=0;x+1000<patt[w];x+=1000){
+thinn.push(1000)
+thinn.push(0)
+}
+thinn.push(patt[w]%1000)
+      patt[w]=thinn
+    }
+    patt=patt.flat()
+  }
+  inv=0
+  wordd=patt.map(item=>String.fromCharCode(item+1)).join('')
+  
+  pattern=[]
+  correct="left"
+  word=file[4]
+  bounds=file[2]
+  cap=bounds[0]*10+bounds[1]*1
+  floor0=bounds[2]*10+bounds[3]*1
+  title=file[0]
+  desc=file[1]
+  run=0
+ // diff=(file[3].charCodeAt(0)-913)/12
+  chan=0
+  transitions=[]
+  cumu=0
+  count=0
+  counts=[]
+  re=[]
+  for (x=0;x<word.length;x++){
+    re.push(word.codePointAt(x)-1)
+    cumu+=word.codePointAt(x)-1
+    if (asd==0){
+      asd=1
+    }
+    else{
+      asd=0
+    }
+    if (word.codePointAt(x)-1!=0){
+    run+=word.codePointAt(x)-1
+    
+    if (word.codePointAt(x+1)-1!=0){
+      if (abs(3000-run)<=10){
+        chan+=1
+        chan%=2
+        if (chan==1){
+          transitions.push(cumu-run)
+        }
+        else{
+          counts.push(count)
+          count=0
+          transitions.push(cumu)
+        }
+      }
+      else if (chan==1&&asd==1){
+        count+=1
+      }
+    run=0
+    }
+    }
+    else if(word.codePointAt(x+1)-1==0){
+            run=0
+            }
+    
+  for (y=0;y<word.codePointAt(x)-1;y++){
+  pattern.push(asd)
+    
+  }
+  }
+ ss=0
+goal=10  
+  
+//mode="ctrlr"
+  wwe=false
+  gfd=0
+  last=-123
+  count=0
+textSize(32)
+  keey=''
+  lastw=-990
+  clicks=[]
+clickhs=[]
+clickbbs=[]
+   if (correct=="left"){
+    r=clicks
+    clickhs=[]
+  }
+  else{
+  r=clickhs
+    clicks=[]
+  }
+  n=5
+  qw=1
+  ables=0
+
+    canvas.elt.oncontextmenu = () => false;
+  
+  done=0
+  times=0
+  mode='scrlr'
+}
+
+function draw() {
+  if (millis()-off+10    >=0&&millis()-off-deltaTime-10<=0){
+  mySound.stop()
+    
+  mySound.play()
+    
+  }
+/*
+  if (frameCount%720==120){
+      mode=random(["clckr","swppr","scrlr","spmmr","ctrlr"])
+  }
+  if (frameCount%720==1){
+   mode=''
+  }
+  */
+  
+  list=["clckr","scrlr","swppr","spmmr","ctrlr"]
+  
+  
+  sss=millis()-off
+  dd=deltaTime
+  if ([transitions,sss.toString()].flat().sort((a,b)=>a-b).indexOf(sss.toString())!=[transitions,round(sss-dd).toString()].flat().sort((a,b)=>a-b).indexOf(round(sss-dd).toString())||(transitions[0]==0&&frameCount==1)){
+    times+=1
+if (times%2==1){
+  mode=""
+}
+    else{
+      mode=list[counts[floor(times/2)-1]-1]
+    }
+    print(mode)
+  }
+  else if (mode!=''&&millis()-off<=pattern.length&&millis()-off>=0){
+    ables+=1
+  }
+
+  
+    /*
+    */
+  //ADDED
+  //SPMMR - swppr but instead, every time you swap you have to change from spam clicking buttons to spam scrolling up and down the scroll wheel, customizable cap cps for perfect score (eg, if the cap is 5cps, if your clicking speed is constantly above 5cps you will get a perfect score)
+  //CTRLR - you have to spam, but when it's white you have to spam quicker and when it's white you have to spam slower, scoring is basd on how close you match the target cps
+  //custom map file format, literally just binary plus some metadata - Jan 24
+  //make a difficulty rating system to include in metadata - Jan 24
+  //scoring indicator - first digit (eg, 8 white flashes) then a long gap, then the last digit (eg, 6 flashes) for the final accuracy (86%) - Jan 24 or 25 idk
+
+  
+  //TO ADD
+  
+  //indicator for gamemode transition - will be a nightmare
+  //inversion mode, same as normal game modes but as if it was inverted, eg, for violin you would go down on white in inversion
+  ////inversion indicator, will also be a nightmare
+  ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them
+  
+  background(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255);
+ 
+  
+ if (isNaN(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255)){
+   background(0)
+ } 
+  
+  mull=mouseIsPressed*1
+  
+  
+  
+  
+  if (millis()-off-clickbbs[0]>300){
+    clickbbs.shift()
+  }
+  
+  
+  if (mouseIsPressed){
+    keey=mouseButton
+  }
+  else{
+    keey=''
+  }
+  
+  
+  
+//mode="ctrlr"
+  
+  
+  if (mode=="scrlr"){
+if (gfd!=0){
+  gfd-=1
+}
+    
+    //BOOKMARK
+ if(wwe==true&&gfd!=0){
+   count+=1
+   
+ /* 
+  fill(255,0,0)
+  rect(0,0,100,100)
+ */}
+  } 
+  
+  
+  
+  
+    else if (mode=="clckr"){
+      count+=pattern[round(millis()-off)]==(mouseIsPressed+(keey=="left"))/2
+      fill(255,0,0)
+      if(pattern[round(millis()-off)]==(mouseIsPressed+(keey=="left"))/2){
+         fill(255,0,0)
+  rect(0,0,100,100)
+         }
+    }
+  
+  
+  
+  
+  
+  else if (mode=="swppr"){
+    if (pattern[round(millis()-off)]!=ss&&pattern[round(millis()-off)]==1){
+      correct=["left","right"][(["left","right"].indexOf(correct)+1)%2]
+      print("ee",correct)
+    }
+    if (pattern[round(millis()-off)]==0){
+      if(mouseIsPressed==false){
+      count+=1
+      }
+    }
+    //BOOKMARK
+    
+    else if (mouseIsPressed){
+      count+=correct==mouseButton
+    /*  if (correct==mouseButton){
+          fill(255,0,0)
+  rect(0,0,100,100)
+          }
+    */}
+  }
+  
+  
+  
+  
+  
+  else if(mode=="spmmr"){
+     if (pattern[round(millis()-off)]!=ss&&pattern[round(millis()-off)]==1){
+      correct=["left","right"][(["left","right"].indexOf(correct)+1)%2]
+    if (correct=="left"){
+    r=clicks
+    clickhs=[]
+  }
+  else{
+  r=clickhs
+    clicks=[]
+  }
+    }
+    if (pattern[round(millis()-off)]==0){
+      if(mouseIsPressed==false&&(millis()-off-lastw>=100)){
+      count+=0.5
+      }
+      count+=0.5
+      
+    }
+    else{
+      
+    
+    
+  n=n*(n!=1)
+  cps=n*1000/(millis()-off-r[0])
+      if (isNaN(cps)){
+        cps=0
+      }
+      count+=min(cps/cap,1)
+      print(cps)
+  if (millis()-off-r[0]>667){
+    r.shift()
+  }
+    n=r.length
+  }
+  }
+  
+  
+  
+  
+  else if (mode=="ctrlr"){
+  
+    r=clicks
+    clickhs=[]
+  
+      
+    
+    
+  n=n*(n!=1)
+  cps=n*1000/(millis()-off-r[0])
+      if (isNaN(cps)){
+        cps=0
+      }
+    if (abs(cps-goal)<=4){
+      count+=0.5
+    }
+    if (abs(cps-goal)<=2.5){
+      count+=0.4
+    }
+    if (abs(cps-goal)<=1){
+      count+=0.1
+    }
+  if (millis()-off-r[0]>667){
+    r.shift()
+  }
+    n=r.length
+    goal+=(pattern[round(millis()-off)]*2-1)/13
+    
+goal=constrain(goal,floor0,cap)
+      
+  }
+  
+  
+  
+  else{
+  correct="left"
+  }
+  
+  
+  
+  
+   if (millis()-off>=pattern.length){
+    if (done==0){
+  startt=millis()-off
+      acc=round(count*1000/ables).toString().padStart(3,0)
+      endpatt=[]
+      
+      
+      for (q=0;q<1000;q++){
+  endpatt.push(0)
+}
+    
+    
+    for (rr=0;rr<=3;rr++){
+    
+    for (q=0;q<1000;q++){
+  endpatt.push(0)
+}
+    
+    for (p=0;p<acc.toString()[rr];p++){
+for (q=0;q<500;q++){
+  endpatt.push(1)
+}
+        for (q=0;q<200;q++){
+          endpatt.push(0)
+        }
+      }
+    }
+    }
+  
+    done=1
+    background(endpatt[round(millis()-off-startt)]*255)
+      if (isNaN(endpatt[round(millis()-off-startt)]*255)){
+   background(0)
+ } 
+  }
+  
+  
+  
+  
+  
+  
+  else{  
+//  text(mode,300,350)
+  }
+  if (pref[2]=="1"){
+  fill(255,0,0)
+  textAlign(CENTER)
+  if(millis()-off<=pattern.length){
+  text(round(count/ables*100)+"%",width+55-120,200)
+}
+else{
+  text(acc/10+"%",width+55-120,200)
+}
+  }
+  if (pref[0]=="1"){
+  text(title,width/2,40)
+  }
+  if (pref[1]=="1"){
+  textAlign(LEFT)
+  push()
+  wew=(mouseButton==RIGHT)*mull
+  weew=(mouseButton==LEFT)*mull
+  weeew=(mouseButton==CENTER)*mull
+  translate(width-120,10)
+  fill(255,75+(-weew+1)*180,75+(-weew+1)*180)
+  arc(50, 80, 80, 100, HALF_PI, PI*1.5,CHORD);
+  fill(255,75+(-wew+1)*180,75+(-wew+1)*180)
+    
+  arc(60, 80, 80, 100, HALF_PI+PI, PI*0.5,CHORD);
+  fill(255)
+strokeWeight(4)
+  is=(millis()-off-lastw)<deltaTime*10
+  stroke(180*(www<0)*is+75,75,75)
+  
+  line(55,15,40,25)
+  line(55,15,70,25)
+    stroke(180*(www>0)*is+75,75,75)
+   line(55,75,40,65)
+  line(55,75,70,65)
+  stroke(0)
+strokeWeight(1)
+//  fill(255,75+(-weeew+1)*180,75+(-weeew+1)*180)
+  
+  rect(47.5,30,15,30,100)
+  pop()
+  }
+  
+  
+  
+  
+  ss=pattern[round(millis()-off)]
+  
+  diff=11
+ /*if (diff<12){
+  text(floor(diff)+" stars, tier "+(round(diff%1*12)*1+1),100,150)
+}
+  else{
+  text("Extreme, tier "+round((diff-12)*10),100,150)
+    
+  }*/
+}
+
+function mouseWheel(event){
+  lastw=millis()-off
+  if (mode=="scrlr"){
+  gfd=15
+if (map((event.delta/abs(event.delta)),1,-1,0,1)==pattern[round(millis()-off)]){
+  wwe=true
+}
+  else{
+    wwe=false
+  }
+}
+  else if (mode=="spmmr"){
+  if (abs(qw/event.delta)!=qw/event.delta){
+  clickhs.push(round(millis()-off)) 
+  }
+qw=event.delta
+}
+www=event.delta
+  
+  return false;
+}
+
+function mousePressed(){
+  wws=millis()-off
+  ww=[transitions,wws.toString()].flat().sort((a,b)=>(a-b)).indexOf(wws.toString())
+    if (mouseButton=="center"){
+   clickbbs.push(round(millis()-off))
+      if (clickbbs.length>=2){
+      off=millis()+ress
+      mySound.stop()
+      setup()
+      }
+    }
+  else if (mouseButton=="left"&&ww%2==1){
+    off-=(transitions[ww*2-1]-3000)-(millis()-off)
+    mySound.jump((transitions[ww*2-1]-3000)/1000)
+  }
+  if (mouseButton=="left"||mouseButton=="right"){
+   clicks.push(round(millis()-off))
+  }
+
+  return false;
+}
+
+function mouseReleased(){
+    canvas.elt.oncontextmenu = () => false;
+  return false;
+}
+    </script>
+  </body>
+</html>
