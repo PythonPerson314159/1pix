@@ -46,6 +46,8 @@ file=file.split("޶޶޶")
 
 
 function setup() {
+    inv=0
+
   pref=localStorage.getItem("pref")+"q"
   if (pref=="nullq"){
     pref="111q"
@@ -435,6 +437,7 @@ else{
   text(acc/10+"%",width+55-120,200)
 }
   }
+  document.getElementById("wqww").innerHTML="&nbsp;"
   if (pref[0]=="1"){
   document.getElementById("wqww").innerHTML=title
   }
