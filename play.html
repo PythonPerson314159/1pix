@@ -10,8 +10,10 @@
   <body>
     <main>
     </main>
+            <div id="canvas-container"></div>
     <script>
     
+
 const dw = (content) => {
     // fileName consists the name of the file
     const text =content ;
@@ -47,7 +49,7 @@ file=file.split("޶޶޶")
 function setup() {
   pref="111"
   textFont("Verdana")
-canvas=  createCanvas(window.screen.width,window.screen.height);
+canvas=  createCanvas(1000,300);
   asd=1
   www=0
   /*https://raw.githubusercontent.com/iamaverycoolperson29/a/refs/heads/main/map000000.1pix
@@ -215,11 +217,14 @@ if (times%2==1){
   ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them
   
   background(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255);
+    document.body.style.backgroundColor = ["#000000","#ffffff"][pattern[round(millis()-off)]*(inv*-2+1)+inv]  
  
   
  if (isNaN(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255)){
    background(0)
+    document.body.style.backgroundColor = "#000000"
  } 
+  
   
   mull=mouseIsPressed*1
   
@@ -328,7 +333,8 @@ if (gfd!=0){
         cps=0
       }
       count+=min(cps/cap,1)
-      print(cps)
+      
+      
   if (millis()-off-r[0]>667){
     r.shift()
   }
@@ -411,9 +417,14 @@ for (q=0;q<500;q++){
   
     done=1
     background(endpatt[round(millis()-off-startt)]*255)
+    document.body.style.backgroundColor = ["#000000","#ffffff"][endpatt[round(millis()-off-startt)]]  
+     
       if (isNaN(endpatt[round(millis()-off-startt)]*255)){
    background(0)
- } 
+    document.body.style.backgroundColor = 0
+        
+ }
+     
   }
   
   
@@ -530,6 +541,24 @@ function mouseReleased(){
     canvas.elt.oncontextmenu = () => false;
   return false;
 }
+
     </script>
   </body>
 </html>
+
+<style>
+  body, html {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#canvas-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+</style>
