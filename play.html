@@ -8,8 +8,7 @@
 
   </head>
   <body>
-    <main>
-    </main>
+   <h1 id="wqww"></h1>
             <div id="canvas-container"></div>
     <script>
     
@@ -47,9 +46,13 @@ file=file.split("޶޶޶")
 
 
 function setup() {
-  pref="111"
+  pref=localStorage.getItem("pref")+"q"
+  if (pref=="nullq"){
+    pref="111q"
+  }
+  pref.replace("q",'')
   textFont("Verdana")
-canvas=  createCanvas(1000,300);
+canvas=  createCanvas(window.width*0.7,300);
   asd=1
   www=0
   /*https://raw.githubusercontent.com/iamaverycoolperson29/a/refs/heads/main/map000000.1pix
@@ -59,20 +62,7 @@ canvas=  createCanvas(1000,300);
   
   patt=[1000,10,1000,123,2345]
   
-  for (w in patt){
-    if (patt[w]>1000){
-      thinn=[]
-for (x=0;x+1000<patt[w];x+=1000){
-thinn.push(1000)
-thinn.push(0)
-}
-thinn.push(patt[w]%1000)
-      patt[w]=thinn
-    }
-    patt=patt.flat()
-  }
-  inv=0
-  wordd=patt.map(item=>String.fromCharCode(item+1)).join('')
+
   
   pattern=[]
   correct="left"
@@ -446,7 +436,7 @@ else{
 }
   }
   if (pref[0]=="1"){
-  text(title,width/2,40)
+  document.getElementById("wqww").innerHTML=title
   }
   if (pref[1]=="1"){
   textAlign(LEFT)
@@ -551,14 +541,16 @@ function mouseReleased(){
   margin: 0;
   padding: 0;
   height: 100%;
-  display: flex;
   justify-content: center;
   align-items: center;
 }
 
 #canvas-container {
-  display: flex;
   justify-content: center;
   align-items: center;
 }
+  h1{
+  color: #ff0000;
+    text-align: center;
+  }
 </style>
