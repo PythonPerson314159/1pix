@@ -9,6 +9,8 @@
   </head>
   <body>
    <h1 id="wqww"></h1>
+    <br>
+    <br>
             <div id="canvas-container"></div>
     <script>
     document.addEventListener('contextmenu', function (event) {
@@ -35,12 +37,15 @@ fetch(url)
 */
 ress=500
   off=ress
-cols=["000000","ffffff"]
+cols=["#000000","#ffffff"]
       
 function preload() {
-  eeee="ʮʮʮʮʮʮʮʮʮƭVƭƭƭVƭƭƭVƭƭƭVƭƭ3ϩϩϨˇˇˇˇˇˇˇϩϩϨʮŗϩʮʮŗϩʮϩϩ:ʮϩŴʮ"
-  file="MAP 0000000޶޶޶the first level YAY޶޶޶1203޶޶޶000000޶޶޶"+eeee
-file=file.split("޶޶޶")
+
+qwq=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+
+
+  
+file=localStorage.getItem("mapss").split("杧杧杧")[qwq]
 
   songid=file[3]
   soundFormats('mp3', 'ogg');
