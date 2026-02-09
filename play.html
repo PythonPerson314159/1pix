@@ -217,14 +217,17 @@ if (times%2==1){
   ////inversion indicator, will also be a nightmare
   ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them
   
-  background(cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]);
-    document.body.style.backgroundColor = cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]  
+
  
   
  if (isNaN(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255)){
    background(0)
     document.body.style.backgroundColor = "#000000"
  } 
+  else{
+      background(cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]);
+    document.body.style.backgroundColor = cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]  
+  }
   
   
   mull=mouseIsPressed*1
@@ -417,14 +420,16 @@ for (q=0;q<500;q++){
     }
   
     done=1
-    background(cols[endpatt[round(millis()-off-startt)]])
-    document.body.style.backgroundColor = cols[endpatt[round(millis()-off-startt)]]  
+ 
      
       if (isNaN(endpatt[round(millis()-off-startt)]*255)){
    background(0)
-    document.body.style.backgroundColor = 0
-        
+    document.body.style.backgroundColor = "#000000"     
  }
+     else{
+          background(cols[endpatt[round(millis()-off-startt)]])
+    document.body.style.backgroundColor = cols[endpatt[round(millis()-off-startt)]]  
+     }
      
   }
   
