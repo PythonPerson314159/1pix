@@ -35,7 +35,8 @@ fetch(url)
 */
 ress=500
   off=ress
-
+cols=["000000","ffffff"]
+      
 function preload() {
   eeee="ʮʮʮʮʮʮʮʮʮƭVƭƭƭVƭƭƭVƭƭƭVƭƭ3ϩϩϨˇˇˇˇˇˇˇϩϩϨʮŗϩʮʮŗϩʮϩϩ:ʮϩŴʮ"
   file="MAP 0000000޶޶޶the first level YAY޶޶޶1203޶޶޶000000޶޶޶"+eeee
@@ -159,8 +160,8 @@ clickbbs=[]
 }
 
 function draw() {
-  if (millis()-off+deltaTime>0&&millis()-off-deltaTime<0){
-  mySound.stop()
+ if (millis()-off+deltaTime    >=0&&millis()-off-3<=0){
+   mySound.stop()
     
   mySound.play()
     
@@ -211,8 +212,8 @@ if (times%2==1){
   ////inversion indicator, will also be a nightmare
   ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them
   
-  background(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255);
-    document.body.style.backgroundColor = ["#000000","#ffffff"][pattern[round(millis()-off)]*(inv*-2+1)+inv]  
+  background(cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]);
+    document.body.style.backgroundColor = cols[pattern[round(millis()-off)]*(inv*-2+1)+inv]  
  
   
  if (isNaN(pattern[round(millis()-off)]*(inv*-2+1)*255+inv*255)){
@@ -411,8 +412,8 @@ for (q=0;q<500;q++){
     }
   
     done=1
-    background(endpatt[round(millis()-off-startt)]*255)
-    document.body.style.backgroundColor = ["#000000","#ffffff"][endpatt[round(millis()-off-startt)]]  
+    background(cols[endpatt[round(millis()-off-startt)]])
+    document.body.style.backgroundColor = cols[endpatt[round(millis()-off-startt)]]  
      
       if (isNaN(endpatt[round(millis()-off-startt)]*255)){
    background(0)
