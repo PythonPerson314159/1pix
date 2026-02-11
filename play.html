@@ -185,8 +185,7 @@ function draw() {
   
   sss=millis()-off
   dd=deltaTime
-  if ([tra
-    nsitions,sss.toString()].flat().sort((a,b)=>a-b).indexOf(sss.toString())!=[transitions,round(sss+dd).toString()].flat().sort((a,b)=>a-b).indexOf(round(sss+dd).toString())||(transitions[0]==0&&frameCount==1)){
+  if ([transitions,sss.toString()].flat().sort((a,b)=>a-b).indexOf(sss.toString())!=[transitions,round(sss+dd).toString()].flat().sort((a,b)=>a-b).indexOf(round(sss+dd).toString())||(transitions[0]==0&&frameCount==1)){
     times+=1
 if (times%2==1){
   mode=""
