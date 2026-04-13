@@ -12,7 +12,6 @@ fileInput.addEventListener("change", previewFile);
 function previewFile() {
   const file = fileInput.files[0];
   const reader = new FileReader();
-
  
    
  
@@ -25,7 +24,7 @@ localStorage.setItem("maps","")
 }
 
   if (file.name.slice(-4)=="1pix") {
-localStorage.setItem("maps",localStorage.getItem("maps")+e+"޶޶޶"+new Date()*1+"޶޶޶noth"+"~~~~")
+localStorage.setItem("maps",localStorage.getItem("maps")+e+"޶޶޶"+new Date()*1+"޶޶޶noth"+"杧杧杧")
   }
 extract()
 sortt()
@@ -37,7 +36,7 @@ sortt()
 <div class=class>
 <button onclick="document.getElementById('mapsel').click()" class="hipeoplelookingatthecode">Upload map</button>
 <h1>1PIX</h1>
-  <div style="width: 100px;"></div> <!-- placeholder; important to give it some width-->
+  <div style="width: 100px;"></div>
 
 </div>
 <div class=top>
@@ -66,23 +65,20 @@ Sort by
 
 document.getElementById('thingy').addEventListener('input',function(e){
         sortt()
-         //do something else
         });
 
 
 
-//maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
 extract()
 function extract(){
 mapperm=[]
-mapss=localStorage.getItem("maps").split("~~~~")
+mapss=localStorage.getItem("maps").split("杧杧杧")
 mapss=mapss.filter((x)=>x!='')
 for (x in mapss){
 io=mapss[x].split("޶޶޶")
 q=[]
 q.push(io[0])
 q.push(io[6])
-//q.push((io[3].charCodeAt(0)-913)/10)
 q.push(io[7])
 q.push(io[4].slice(0,-5))
 q.push(io[2])
@@ -92,8 +88,6 @@ q.push(io[4].slice(-5))
 mapperm.push(q)
 }
 }
-
-
 
 sortt()
 function sortt(){
@@ -160,7 +154,7 @@ return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(i
 </script>
 
 <style>
-input:focus, textarea:focus {
+input:focus, textarea:focus, button:focus {
   outline: none;
   border: none;
 } 
@@ -192,6 +186,7 @@ font-family: Verdana;
 border:none;
 }
 button{
+border:none;
 height:60px;
 width:100px;
 border: none;
