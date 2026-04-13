@@ -79,7 +79,7 @@ if (find(mapperm[id][2])[0]==10000){
 document.getElementById(2).innerHTML="FC"
 }
 document.getElementById(3).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
-document.getElementById(4).innerHTML=mapperm[id][2].length/4-1
+document.getElementById(4).innerHTML=(mapperm[id][2].replaceAll("杧","")).length/4-1
 document.getElementById(5).innerHTML=Math.round(mapperm[id][7]**2/1000000%1000)+" ms"
 document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
 document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
@@ -113,7 +113,7 @@ r={'noth':'0000','fcfc':'10000'}
 kj=hh.match(/.{1,4}/g) ?? []
 sum=0
 kj.filter(item=>item!="noth").map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1).forEach(item=>sum+=item)
-return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1)),kj.reduce((total,x) => total+(x=="fcfc"), 0),kj.reduce((total,x) => total+(x=="noth"), 0)-1,sum / kj.length-1]
+return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1)),kj.reduce((total,x) => total+(x=="fcfc"), 0),kj.reduce((total,x) => total+(x=="noth"), 0)-1,sum/(kj.length-1)]
 }
 </script>
 
