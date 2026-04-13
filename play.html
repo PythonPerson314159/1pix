@@ -13,6 +13,7 @@
     <br>
             <div id="canvas-container"></div>
     <script>
+
     document.addEventListener('contextmenu', function (event) {
   event.preventDefault();
 });   
@@ -45,17 +46,22 @@ qwq=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.doc
 
 
   
-file=localStorage.getItem("mapss").split("杧杧杧")[qwq].split('޶޶޶')
+file=localStorage.getItem("maps").split("杧杧杧")[qwq].split('޶޶޶')
+  file.push(file[4].slice(-5))
+  file[4]=file[4].slice(0,-5)
 
   songid=file[3]
   soundFormats('mp3', 'ogg');
   mySound = loadSound('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/'+songid+'.mp3');
-  	  qd = loadFont('fontt.ttf'); 
 }
 
 
 function setup() {
-  textFont(qd)
+    window.addEventListener('beforeunload', w);
+
+  
+  
+  textFont("Verdana")
     inv=0
 
   pref=localStorage.getItem("pref")+"q"
@@ -161,7 +167,10 @@ clickbbs=[]
   
   done=0
   times=0
-  mode='scrlr'
+  list=["clckr","scrlr","swppr","spmmr","ctrlr"]
+  
+  mode=list[floor(Math.round(file[8]**2/1000000)/1000)]
+  window=Math.round(file[8]**2/1000000)%1000
 }
 
 function draw() {
@@ -180,7 +189,6 @@ function draw() {
   }
   */
   
-  list=["clckr","scrlr","swppr","spmmr","ctrlr"]
   
   
   sss=millis()-off
@@ -208,15 +216,15 @@ if (times%2==1){
   //custom map file format, literally just binary plus some metadata - Jan 24
   //make a difficulty rating system to include in metadata - Jan 24
   //scoring indicator - first digit (eg, 8 white flashes) then a long gap, then the last digit (eg, 6 flashes) for the final accuracy (86%) - Jan 24 or 25 idk
-
+  //indicator for gamemode transition - will be a nightmare
+  ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them 
   
   //TO ADD
   
-  //indicator for gamemode transition - will be a nightmare
-  //inversion mode, same as normal game modes but as if it was inverted, eg, for violin you would go down on white in inversion
-  ////inversion indicator, will also be a nightmare
-  ////detecting these indicators (inversion and scoring), shouldn't be too bad if i concretely define them
-  
+
+  //SCRAPPED - inversion mode, same as normal game modes but as if it was inverted, eg, for violin you would go down on white in inversion
+  ////SCRAPPED - inversion indicator, will also be a nightmare
+ 
 
  
   
@@ -392,8 +400,20 @@ goal=constrain(goal,floor0,cap)
   
    if (millis()-off>=pattern.length){
     if (done==0){
+     print("e")
   startt=millis()-off
       acc=round(count*1000/ables).toString().padStart(3,0)
+      ghgh=+Math.round(count/ables*10000).toString().padStart(4,0)
+      if (ghgh==10000){
+        ghgh="fcfc"
+      }
+      jk=localStorage.getItem("maps").split("杧杧杧")
+      jk[qwq]=jk[qwq].split('޶޶޶')
+      jk[qwq][7]=jk[qwq][7]+ghgh
+      jk[qwq]=jk[qwq].join("޶޶޶")
+      jk=jk.join("杧杧杧")
+      localStorage.setItem("maps",jk)
+      print(jk)
       endpatt=[]
       
       
@@ -450,10 +470,6 @@ for (q=0;q<500;q++){
 else{
   text(acc/10+"%",width+55-120,200)
 }
-  }
-  document.getElementById("wqww").innerHTML="&nbsp;"
-  if (pref[0]=="1"){
-  document.getElementById("wqww").innerHTML=title
   }
   if (pref[1]=="1"){
   textAlign(LEFT)
@@ -529,6 +545,17 @@ function mousePressed(){
       if (clickbbs.length>=2){
       off=millis()+ress
       mySound.stop()
+        
+        
+        jk=localStorage.getItem("maps").split("杧杧杧")
+      qwq=1
+      jk[qwq]=jk[qwq].split('޶޶޶')
+      jk[qwq][7]=jk[qwq][7]+"noth"
+      jk[qwq]=jk[qwq].join("޶޶޶")
+      jk=jk.join("杧杧杧")
+      localStorage.setItem("maps",jk)
+        
+        
       setup()
       }
     }
@@ -548,6 +575,17 @@ function mouseReleased(){
   return false;
 }
 
+function w(){
+  if (millis()-off<=pattern.length){
+      jk=localStorage.getItem("maps").split("杧杧杧")
+      qwq=1
+      jk[qwq]=jk[qwq].split('޶޶޶')
+      jk[qwq][7]=jk[qwq][7]+"noth"
+      jk[qwq]=jk[qwq].join("޶޶޶")
+      jk=jk.join("杧杧杧")
+      localStorage.setItem("maps",jk)
+} 
+}
     </script>
   </body>
 </html>
