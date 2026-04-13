@@ -1,0 +1,259 @@
+<html><head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<input type="file" id=mapsel accept=".1pix">
+<title>1PIX</title>
+<script>
+const content = document.querySelector(".content");
+const fileInput = document.querySelector("input[type=file]");
+
+fileInput.addEventListener("change", previewFile);
+
+function previewFile() {
+  const file = fileInput.files[0];
+  const reader = new FileReader();
+
+ 
+   
+ 
+reader.readAsText(file)
+
+reader.addEventListener("load", () => {
+e=reader.result
+if (localStorage.getItem("maps")==null){
+localStorage.setItem("maps","")
+}
+
+  if (file.name.slice(-4)=="1pix") {
+localStorage.setItem("maps",localStorage.getItem("maps")+e+"޶޶޶"+new Date()*1+"޶޶޶noth"+"~~~~")
+  }
+extract()
+sortt()
+}
+)
+}
+
+</script>
+<div class=class>
+<button onclick="document.getElementById('mapsel').click()" class="hipeoplelookingatthecode">Upload map</button>
+<h1>1PIX</h1>
+  <div style="width: 100px;"></div> <!-- placeholder; important to give it some width-->
+
+</div>
+<div class=top>
+Sort by
+<select id=sort onchange=sortt()>
+<option value=0>date (newest -> oldest)</option>
+<option value=1>date (oldest -> newest)</option>
+<option value=2>difficulty (hardest -> easiest)</option>
+<option value=3>difficulty (easiest -> hardest)</option>
+<option value=4>accuracy (best -> worst)</option>
+<option value=5>accuracy (worst -> best)</option>
+<option value=6>alphabetical (A -> Z)</option>
+<option value=7>alphabetical (Z -> A)</option>
+</select><br><br>Search: 
+<input id="thingy" onchange="console.log('e')"></input>
+</div>
+<div id=bigbig>
+</div>
+
+
+
+<script>
+// Source - https://stackoverflow.com/a/69025039
+// Posted by Shalom Alexander
+// Retrieved 2026-04-12, License - CC BY-SA 4.0
+
+document.getElementById('thingy').addEventListener('input',function(e){
+        sortt()
+         //do something else
+        });
+
+
+
+//maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
+extract()
+function extract(){
+mapperm=[]
+mapss=localStorage.getItem("maps").split("~~~~")
+mapss=mapss.filter((x)=>x!='')
+for (x in mapss){
+io=mapss[x].split("޶޶޶")
+q=[]
+q.push(io[0])
+q.push(io[6])
+//q.push((io[3].charCodeAt(0)-913)/10)
+q.push(io[7])
+q.push(io[4].slice(0,-5))
+q.push(io[2])
+q.push(io[1])
+q.push(x)
+q.push(io[4].slice(-5))
+mapperm.push(q)
+}
+}
+
+
+
+sortt()
+function sortt(){
+one=document.getElementById("sort").value
+maps=mapperm.filter(item=>item[0].toLowerCase().includes(document.getElementById("thingy").value.toLowerCase()))
+if (one==one%2){
+maps.sort((a,b)=>b[6]-a[6])
+}
+if (one-one%2==2){
+maps.sort((a,b)=>b[2]-a[2])
+}
+if (one-one%2==4){
+maps.sort((a,b)=>b[7]-a[7])
+}
+if (one-one%2==6){
+maps.sort(function (a, b) {
+  if (a[0].toLowerCase() < b[0].toLowerCase()) {
+    return -1;
+  }
+  else {
+    return 1;
+  }
+
+});
+}
+
+if (one%2==1){
+maps.reverse()
+}
+
+tot=''
+for (x in maps){
+if (maps[x][2]<12){
+difff=Math.floor(maps[x][2])+"★"
+}
+else{
+difff="Extreme"
+}
+
+bestt=Math.round(find(maps[x][2])[0]/100)
+
+tot+="<div class=mega id="+x+" onclick=''><span class='a'><big>"+maps[x][0]+"</big><br>"+bestt+"% acc.</span><span class=e><button onclick=location.href='view.html?id="+maps[x][6]+"' >Play</button></span></div>"
+}
+
+document.getElementById("bigbig").innerHTML=tot
+}
+
+
+/*function ext(e){
+tot=0
+maps[e][3].split("").forEach((item)=>tot+=item.codePointAt(0)-1)
+tot/=1000
+tot=Math.round(tot)
+
+auto="<span class='a'><big>"+maps[e][0]+"</big><br>"+maps[e][1]+"% acc.</span><span class=e>"+difff+"</span>"
+document.getElementById(e).innerHTML=auto+"<div><br><br><br><hr><p><span class=e><button>Play</button></span>"+maps[e][5]+"</p><p class=p>Length: "+tot+" seconds</p><p class=p>Added: "+new Date(maps[e][3]/1).toDateString().slice(4)+"</p></div>"
+}*/
+
+function find(hh){
+r={'noth':'0000','fcfc':'10000'}
+kj=hh.match(/.{1,4}/g) ?? []
+return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1)),kj.reduce((total,x) => total+(x=="fcfc"), 0),kj.reduce((total,x) => total+(x=="noth"), 0)-1]
+}
+</script>
+
+<style>
+input:focus, textarea:focus {
+  outline: none;
+  border: none;
+} 
+html{
+background-color:#101010;
+font-family: Verdana;
+color: white;
+font-size:20px;
+}
+.e{
+float:right;
+}
+.a{
+float: left;
+}
+big{
+font-size: 35px;
+}
+select{
+font-family: Verdana;
+font-size:20px;
+border: none;
+background-color: #101010;
+color: white;
+border-radius:10px;
+}
+input{
+font-family: Verdana;
+border:none;
+}
+button{
+height:60px;
+width:100px;
+border: none;
+border-radius:10px;
+font-size:30px;
+transition: 0.3s;
+
+}
+button:hover{
+transition: 0.3s;
+
+background:#dddddd;
+}
+option{
+font-size:20px;
+border: none;
+background-color: #303030;
+color: #f3f3f3;
+border-radius:10px;
+}
+.mega{
+margin-left: calc(50% - 200px);
+margin-bottom: 2vh;
+margin-top: 2vh;
+padding:10px;
+height:100px;
+color: #000000;
+border-radius:10px;
+width: 400px;
+background-color: #a0a0a0;
+transition: height 0.3s;
+}
+.p{
+font-size:12px;
+}
+
+.top{
+text-align:center;
+}
+#bigbig{
+width:40%;
+margin-left: 30%;
+padding:  40px 0 40px 0;
+background-color:#00000000;
+}
+#mapsel{
+display:none;
+}
+.hipeoplelookingatthecode{
+width:110px;
+height:40px;
+font-size:17px;
+float:left;
+}
+.hipeoplelookingatthecode:hover{
+rotate:2deg;
+}
+.class{  display: flex; justify-content: space-between;
+}
+h1{
+color:#FFFFFF;
+
+}
+</style>
+</html>

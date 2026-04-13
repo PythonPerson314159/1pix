@@ -1,0 +1,188 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+
+
+<a href="index.html">< Back</a>
+<div class=omega><div><h1 id="name"></h1>
+<button class=play onclick="gotothegame()">Go︎</button>
+<div class=huge>
+<div class=mega>Length: <strong id=0></strong></div>
+<div class=mega>Starts with <strong id=1></strong></div>
+</div>
+<div class=huge>
+<div class=mega>Best accuracy: <strong id=2></strong></div>
+<div class=mega>Average accuracy: <strong id=3></strong></div>
+</div>
+<div class=huge>
+<div class=mega>Attempts: <strong id=4></strong></div>
+<div class=mega>Click window: <strong id=5></strong></div>
+</div>
+<div class=huge>
+<div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div>
+<div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div>
+</div>
+<!--<button class=eee>More stats</button>-->
+</div></div>
+
+
+<script>
+id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+function gotothegame(){
+location.href="play?id="+id
+}
+// Source - https://stackoverflow.com/a/69025039
+// Posted by Shalom Alexander
+// Retrieved 2026-04-12, License - CC BY-SA 4.0
+
+
+
+//maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
+
+extract()
+document.title=mapperm[id][0]+" - 1PIX"
+document.getElementById("name").innerHTML=mapperm[id][0]
+tot=0
+mapperm[id][3].split("").forEach((item)=>tot+=item.codePointAt(0)-1)
+tot/=1000
+tot=Math.round(tot)
+bg=tot%60+"s"
+if (tot>=60){
+bg=Math.floor(tot/60)+"m "+bg
+}
+document.getElementById(0).innerHTML=bg
+document.getElementById(1).innerHTML=["clckr","scrlr","swppr","spmmr","ctrlr"][Math.floor(mapperm[id][7]**2/1000000/1000)]
+document.getElementById(2).innerHTML=Math.round(find(mapperm[id][2])[0]/100)+"%"
+if (find(mapperm[id][2])[0]==10000){
+document.getElementById(2).innerHTML="FC"
+}
+document.getElementById(3).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
+document.getElementById(4).innerHTML=mapperm[id][2].length/4-1
+document.getElementById(5).innerHTML=Math.round(mapperm[id][7]**2/1000000%1000)+" ms"
+document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
+document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
+
+function extract(){
+mapperm=[]
+mapss=localStorage.getItem("maps").split("~~~~")
+mapss=mapss.filter((x)=>x!='')
+for (x in mapss){
+io=mapss[x].split("޶޶޶")
+q=[]
+q.push(io[0])
+q.push(io[6])
+//q.push((io[3].charCodeAt(0)-913)/10)
+q.push(io[7])
+q.push(io[4].slice(0,-5))
+q.push(io[2])
+q.push(io[1])
+q.push(x)
+q.push(io[4].slice(-5))
+mapperm.push(q)
+}
+}
+
+
+
+function find(hh){
+r={'noth':'0000','fcfc':'10000'}
+kj=hh.match(/.{1,4}/g) ?? []
+sum=0
+kj.filter(item=>item!="noth").map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1).forEach(item=>sum+=item)
+return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1)),kj.reduce((total,x) => total+(x=="fcfc"), 0),kj.reduce((total,x) => total+(x=="noth"), 0)-1,sum / kj.length]
+}
+</script>
+
+<style> 	
+h1{
+color:#FFFFFF;
+text-align:center;
+}
+html{
+background-color:#101010;
+font-family: Verdana;
+color: white;
+font-size:20px;
+}
+.e{
+float:right;
+}
+.a{
+float: left;
+}	
+input{
+font-family: Verdana;
+border:none;
+}
+button{
+padding:20px;
+border: none;
+border-radius:10px;
+font-size:30px;
+transition: 0.3;
+
+}
+button:hover{
+background:#dddddd;
+}
+.mega{
+margin-bottom: 2vh;
+margin-top: 2vh;
+padding:10px;
+height:100px;
+color: #ffffff;
+border-radius:10px;
+width: 400px;
+background-color: #a0a0a000;
+display:inline;
+
+}
+.huge{
+background-color:#222222;
+padding:10px;
+width: 800px;
+margin: 0 auto;
+
+}
+.p{
+font-size:12px;
+}
+
+.omega{
+margin-top: 0px;
+text-align:center;
+}
+#bigbig{
+width:40%;
+margin-left: 30%;
+padding:  40px 0 40px 0;
+background-color:#00000000;
+}
+tiny{
+font-size:14px;
+}
+.play{
+width:200px;
+height:200px;
+font-size:100px;
+margin:30px;
+color:#000000;
+border-radius:30px;
+}
+.eee{
+margin:10px;
+background-color:#eeeeee;
+}
+a{
+color: #c4e8e8;
+text-decoration:none;
+transition: 0.4s;
+
+}
+a:hover{
+transition: 0.4s;
+
+color: #ec2d2d;
+}
+</style>
