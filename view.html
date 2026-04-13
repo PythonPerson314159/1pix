@@ -107,7 +107,8 @@ mapperm.push(q)
 
 
 
-function find(hh){
+function find(h){
+hh=h.replaceAll("杧","")
 r={'noth':'0000','fcfc':'10000'}
 kj=hh.match(/.{1,4}/g) ?? []
 sum=0
