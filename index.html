@@ -12,6 +12,7 @@ fileInput.addEventListener("change", previewFile);
 function previewFile() {
   const file = fileInput.files[0];
   const reader = new FileReader();
+
  
    
  
@@ -33,13 +34,14 @@ sortt()
 }
 
 </script>
-<div class=class>
+<div class=class>	
 <button onclick="document.getElementById('mapsel').click()" class="hipeoplelookingatthecode">Upload map</button>
-<h1>1PIX</h1>
-  <div style="width: 100px;"></div>
+  <div style="width: 100px;"></div> <!-- placeholder; important to give it some width-->
+<button onclick="location.href='new.html'" class="hipeoplelookingatthecode0">Create map</button>
 
 </div>
 <div class=top>
+<h1>1PIX</h1>
 Sort by
 <select id=sort onchange=sortt()>
 <option value=0>date (newest -> oldest)</option>
@@ -65,10 +67,12 @@ Sort by
 
 document.getElementById('thingy').addEventListener('input',function(e){
         sortt()
+         //do something else
         });
 
 
 
+//maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
 extract()
 function extract(){
 mapperm=[]
@@ -79,6 +83,7 @@ io=mapss[x].split("޶޶޶")
 q=[]
 q.push(io[0])
 q.push(io[6])
+//q.push((io[3].charCodeAt(0)-913)/10)
 q.push(io[7])
 q.push(io[4].slice(0,-5))
 q.push(io[2])
@@ -89,12 +94,14 @@ mapperm.push(q)
 }
 }
 
+
+
 sortt()
 function sortt(){
 one=document.getElementById("sort").value
 maps=mapperm.filter(item=>item[0].toLowerCase().includes(document.getElementById("thingy").value.toLowerCase()))
 if (one==one%2){
-maps.sort((a,b)=>b[6]-a[6])
+maps.sort((a,b)=>b[6].replace(/\D/g, '')-a[6].replace(/\D/g, ''))
 }
 if (one-one%2==2){
 maps.sort((a,b)=>b[2]-a[2])
@@ -129,7 +136,7 @@ difff="Extreme"
 
 bestt=Math.round(find(maps[x][2])[0]/100)
 
-tot+="<div class=mega id="+x+" onclick=''><span class='a'><big>"+maps[x][0]+"</big><br>"+bestt+"% acc.</span><span class=e><button onclick=location.href='view.html?id="+maps[x][6]+"' >Play</button></span></div>"
+tot+="<div class=mega id="+x+" onclick=''><span class='a'><big>"+maps[x][0]+"</big><br>"+bestt+"% acc.</span><span class=e><button onclick=location.href='view.html?id="+maps[x][6]+"' >Play<br><tiny>"+["","or edit"][maps[x][1].includes("y")*1]+"</tiny></button></span></div>"
 }
 
 document.getElementById("bigbig").innerHTML=tot
@@ -154,7 +161,10 @@ return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(i
 </script>
 
 <style>
-input:focus, textarea:focus, button:focus {
+tiny{
+font-size:14px;
+}
+input:focus, textarea:focus {
   outline: none;
   border: none;
 } 
@@ -186,7 +196,6 @@ font-family: Verdana;
 border:none;
 }
 button{
-border:none;
 height:60px;
 width:100px;
 border: none;
@@ -236,19 +245,43 @@ background-color:#00000000;
 display:none;
 }
 .hipeoplelookingatthecode{
-width:110px;
 height:40px;
-font-size:17px;
+font-size:19px;
+width:140px;
 float:left;
+color: #c4e8e8;
+background-color:#00000000;
+transition: 0.4s;
 }
 .hipeoplelookingatthecode:hover{
-rotate:2deg;
+
+transition: 0.4s;
+background-color:#00000000;
+color: #ec2d2d;
 }
+
+
+.hipeoplelookingatthecode0{
+height:40px;
+font-size:19px;
+width:140px;
+float:right;
+color: #c4e8e8;
+background-color:#00000000;
+transition: 0.4s;
+}
+.hipeoplelookingatthecode0:hover{
+
+transition: 0.4s;
+background-color:#00000000;
+color: #ec2d2d;
+}
+
 .class{  display: flex; justify-content: space-between;
 }
 h1{
 color:#FFFFFF;
-
+text-align:center;
 }
 </style>
 </html>
