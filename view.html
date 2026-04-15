@@ -79,14 +79,14 @@ if (find(mapperm[id][2])[0]==10000){
 document.getElementById(2).innerHTML="FC"
 }
 document.getElementById(3).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
-document.getElementById(4).innerHTML=mapperm[id][2].length/4-1
+document.getElementById(4).innerHTML=Math.round(mapperm[id][2].length/4-1)
 document.getElementById(5).innerHTML=Math.round(mapperm[id][7]**2/1000000%1000)+" ms"
 document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
 document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
 
 function extract(){
 mapperm=[]
-mapss=localStorage.getItem("maps").split("~~~~")
+mapss=localStorage.getItem("maps").split("杧杧杧")
 mapss=mapss.filter((x)=>x!='')
 for (x in mapss){
 io=mapss[x].split("޶޶޶")
