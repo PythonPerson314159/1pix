@@ -1,0 +1,384 @@
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<!--add cps cap and floor, embed editor, done-->
+
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+
+<title>Create 1PIX map</title>
+
+<a href="index.html">< Back</a>
+<div class=omega><h1 id="name"></h1>
+<h1>Create New Map</h1>
+
+Name: <input id="waa"></input><br>
+Description: <textarea id="desc"></textarea><br>
+Song: <input id="song"></input><br>
+<input type="number" class=c id="bpm" style=display:none></input>
+<div id=rhr></div>
+Song offset: <input type="number" class=c id="off"></input><button class=class onclick=playoff() id='a'>Play</button><button onclick={document.getElementById("off").value=Math.round(Math.round(audio.currentTime/(60/document.getElementById("bpm").value))*(60/document.getElementById("bpm").value)*100)/100;resizeInput.call(inpdsut)} class=class>Update</button><p id=timeee></p>
+<hr>		
+Starting gamemode: <select class=29 id=gm>
+<option id=0>clckr</option>
+<option id=1>scrlr</option>
+<option id=2>swppr</option>
+<option id=3>spmmr</option>
+<option id=4>ctrlr</option>
+</select><br>
+Click window: <input id="window" type=number max=500 min=0></input> ms
+<br>
+CPS floor: <input id=floor type=number max=20 min=1></input>
+CPS cap: <input id=cap type=number max=20 min=1></input>
+<br>
+<br>
+<button onclick=exists()>Create</button>
+</div>
+
+
+<script>
+
+document.getElementById("floor").value=3
+document.getElementById("cap").value=12
+document.getElementById('song').addEventListener('input',function(e){
+getText(document.getElementById('song').value)
+
+         //do something else
+        });
+
+wiwwiw=983183939183
+function playoff(){
+if (wiwwiw!=document.getElementById('off').value){
+document.getElementById("a").innerHTML="Pause"
+
+audio.pause()
+audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+document.getElementById('song').value.slice(-7,-1)+".mp3")
+audio.currentTime=document.getElementById("off").value*1
+audio.play()
+  wiwwiw=document.getElementById('off').value
+}
+else{
+  wiwwiw=document.getElementById('off').value
+
+if (audio.paused==false){
+document.getElementById("a").innerHTML="Play"
+audio.pause()
+}
+else{
+document.getElementById("a").innerHTML="Pause"
+
+audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+document.getElementById('song').value.slice(-7,-1)+".mp3")
+audio.currentTime=document.getElementById("off").value*1
+audio.play()
+}
+}
+}
+async function getText(f) {
+if (f!=""&&f?.trim()&&f){
+
+ fetch('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/dtb.txt')
+  .then(response => response.text())
+  .then(data =>
+            mm=(data.split("\n").slice(0,-1).filter(item=>item.split(",")[1].toLowerCase().includes(f.toLowerCase()))))
+.then(mm=>
+document.getElementById("rhr").innerHTML=mm.map(item=>"<button class=ww onmouseover=playe("+item.split(",")[0].toString()+") onmouseout=stope() onclick=whwh("+item.split(",")[0]+")>"+item.split(",")[1]+"</button>By "+item.split(",")[2]).join("<br>"))
+}
+else{
+document.getElementById("rhr").innerHTML=""
+}
+}
+
+document.getElementById("window").value=150
+var inpdsut = document.getElementById("off"); // get the input element
+inpdsut.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(inpdsut); // immediately call the function
+
+
+async function exists(){
+ fetch('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/dtb.txt')
+  .then(response => response.text())
+  .then(data =>
+data.split("\n").slice(0,-1).filter(item=>item.split(",")[0]==document.getElementById('song').value.slice(-7,-1)).length!=0
+)
+.then(mnnm=>things(mnnm))
+
+}
+function things(e){
+error="lol"
+if (document.getElementById("waa").value==""){
+error="Enter a name!"
+}
+else if (document.getElementById("window").value==""){
+error="Enter a click window!"
+}
+else if (Math.abs(document.getElementById("window").value)>=500){
+error="Click window is too big! (must be under 500ms)"
+}
+else if (e==false){
+error="Invalid song!"
+}
+else if(document.getElementById("floor").value<=1||document.getElementById("floor").value>=20){
+error="CPS floor is out of range! (must be between 1 and 20 CPS)"
+
+}
+else if(document.getElementById("cap").value<=1||document.getElementById("cap").value>=20){
+error="CPS cap is out of range! (must be between 1 and 20 CPS)"
+}
+else{
+if (Math.round(document.getElementById("cap").value)<=Math.round(document.getElementById("floor").value)){
+lsls=Math.round(document.getElementById("floor").value).toString().padStart(2,0)+Math.round(document.getElementById("cap").value).toString().padStart(2,0)
+}
+else{
+lsls=Math.round(document.getElementById("cap").value).toString().padStart(2,0)+Math.round(document.getElementById("floor").value).toString().padStart(2,0)
+
+}
+qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"޶޶޶"+lsls+"޶޶޶"+document.getElementById("song").value.slice(-7,-1)+Math.round(document.getElementById("off").value*100).toString().padStart(5,0)+"޶޶޶"+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"޶޶޶"
+
+localStorage.setItem("maps",localStorage.getItem("maps")+qw+"޶޶޶"+new Date()*1+"yours޶޶޶noth"+"杧杧杧")
+location.href="edit.html?id="+(localStorage.getItem("maps").split("杧杧杧").length-1)
+
+}
+if (error!="lol"){
+Swal.fire({
+theme:"dark",
+  html: error,
+  timer: 1000,
+  timerProgressBar: true,
+  showConfirmButton:false
+  })
+}
+}
+id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+function gotothegame(){
+location.href="play?id="+id
+}
+
+function playe(idi){
+idid=idi.toString().padStart(6,0)
+audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+idid+".mp3");
+audio.play();   
+}
+
+function stope(){
+audio.pause()
+audio.currentTime=0
+}
+
+function whwh(idid){
+whe=mm.filter(item=>item.split(",")[0]==idid)[0].split(",")
+document.getElementById('song').value=whe[1]+' by '+whe[2]+" (ID: "+whe[0]+")"
+document.getElementById('bpm').value=whe[3]*1
+getText("dksjdfksjfksjdksdjksfj")
+resizeInput.call(inpdut)
+stope()
+}
+
+var input = document.getElementById("waa"); // get the input element
+input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(input); // immediately call the function
+var inpdut = document.getElementById("song"); // get the input element
+inpdut.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(inpdut); // immediately call the function
+var inpdsut = document.getElementById("off"); // get the input element
+inpdsut.addEventListener('input', resizeInpute); // bind the "resizeInput" callback on "input" event
+resizeInpute.call(inpdsut); // immediately call the function
+var dinpdsut = document.getElementById("window"); // get the input element
+dinpdsut.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(dinpdsut); // immediately call the function
+var vdinpdsut = document.getElementById("desc"); // get the input element
+vdinpdsut.addEventListener('input', resizeInpvut); // bind the "resizeInput" callback on "input" event
+resizeInpvut.call(vdinpdsut); // immediately call the function
+var qvdinpdsut = document.getElementById("cap"); // get the input element
+qvdinpdsut.addEventListener('input', resizeInpvut); // bind the "resizeInput" callback on "input" event
+resizeInput.call(qvdinpdsut); // immediately call the function
+var vqvdinpdsut = document.getElementById("floor"); // get the input element
+vqvdinpdsut.addEventListener('input', resizeInpvut); // bind the "resizeInput" callback on "input" event
+resizeInput.call(vqvdinpdsut); // immediately call the function
+
+function resizeInput() {
+  this.style.width = this.value.length*1+5 + "ch";
+}	
+function resizeInpute() {
+  this.style.width = this.value.length*1+5 + "ch";
+if (document.getElementById("a").innerHTML="Pause"){
+document.getElementById("a").innerHTML="Play"
+}
+}
+function resizeInpvut() {
+if (this.value.length*1+3<=40){
+  this.style.width = this.value.length*1+5 + "ch";
+}	
+else{
+  this.style.width = "40ch"
+  this.style.height = this.scrollHeight*1 + "px";
+}}
+
+function find(hh){
+r={'noth':'0000','fcfc':'10000'}
+kj=hh.match(/.{1,4}/g) ?? []
+sum=0
+kj.filter(item=>item!="noth").map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1).forEach(item=>sum+=item)
+return [Math.max(...kj.map(item => r[item] !== undefined ? r[item] : item).map(item=>item*1)),kj.reduce((total,x) => total+(x=="fcfc"), 0),kj.reduce((total,x) => total+(x=="noth"), 0)-1,sum / kj.length-1]
+}
+</script>
+
+<style>
+input:focus, button:focus, textarea:focus {
+  outline: none;
+  border: none;
+}  	
+h1{
+color:#FFFFFF;
+text-align:center;
+}
+html{
+background-color:#101010;
+font-family: Verdana;
+color: white;
+font-size:20px;
+}
+.e{
+float:right;
+}
+.a{
+float: left;
+}	
+input{
+font-family: Verdana;
+border:none;
+border-radius:5px;
+transition:0.3s ease-in-out;
+}
+button{
+padding:10px;
+border: none;
+border-radius:10px;
+font-size:30px;
+transition: 0.3;
+}
+.p{
+font-size:12px;
+}
+.29{
+width:150px;
+text-align:center;
+}
+.omega{
+margin-top: 0px;
+text-align:center;
+}
+tiny{
+font-size:14px;
+}
+.eee{
+margin:10px;
+background-color:#eeeeee;
+}
+a{
+color: #c4e8e8;
+text-decoration:none;
+transition: 0.4s;
+
+}
+a:hover{
+transition: 0.4s;
+
+color: #ec2d2d;
+}	
+input{
+font-size:25px;
+margin:15px;
+min-width:50px;
+text-align:center;
+
+}
+#bpm{
+width:100px;
+}
+.c{
+width:70px;
+}
+.ww{
+background-color:#00000000;
+color:#ffffff;	
+}
+.ww:hover{
+color:#ff6666;	
+}
+option{
+font-size:25px;
+text-align:center;
+
+}
+select{
+font-size:25px;
+}
+.class{
+font-size:20px;
+height:40px;
+margin:5px;
+}
+#off{
+text-align:center;
+
+}
+#window{
+
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type=number] {
+    -moz-appearance:textfield; /* Firefox */
+}
+textarea {
+font-family:Verdana;
+border-radius:5px;
+
+font-size:20px;
+min-width:50px;
+text-align:center;
+resize: none; 
+height:30px;
+
+    /* Hide scrollbar in WebKit (Chrome, Safari, newer Opera) */
+    &::-webkit-scrollbar {
+        display: none;
+    }
+    
+    /* Hide scrollbar in Firefox */
+    -moz-scrollbars-none: none; /* Note: Firefox uses 'overflow: -moz-scrollbars-none' on the element itself */
+    overflow: -moz-scrollbars-none;
+    
+    /* Hide scrollbar in Internet Explorer + Edge */
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}   
+hr{
+width:300px;
+border-top:dotted;
+border-bottom:none;
+border-left:none;
+border-right:none;
+
+}
+/*
+Source - https://stackoverflow.com/a/67784289
+Posted by Arun P, modified by community. See post 'Timeline' for change history
+Retrieved 2026-04-15, License - CC BY-SA 4.0
+*/
+
+.swal2-popup {
+font-weight:normal;
+  font-family: Verdana, serif;
+}
+button:hover{
+background:#dddddd;
+}
+.ww:hover{
+background:#67676700;
+}
+</style>
