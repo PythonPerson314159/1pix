@@ -12,12 +12,12 @@
 <div class=omega><h1 id="name"></h1>
 <h1>Create New Map</h1>
 
-Name: <input id="waa"></input><br>
+Name: <input autocomplete=off id="waa"></input><br>
 Description: <textarea id="desc"></textarea><br>
-Song: <input id="song"></input><br>
-<input type="number" class=c id="bpm" style=display:none></input>
+Song: <input autocomplete=off id="song"></input><br>
+<input autocomplete=off type="number" class=c id="bpm" style=display:none></input>
 <div id=rhr></div>
-Song offset: <input type="number" class=c id="off"></input><button class=class onclick=playoff() id='a'>Play</button><button onclick={document.getElementById("off").value=Math.round(Math.round(audio.currentTime/(60/document.getElementById("bpm").value))*(60/document.getElementById("bpm").value)*100)/100;resizeInput.call(inpdsut)} class=class>Update</button><p id=timeee></p>
+Song offset: <input autocomplete=off type="number" class=c id="off"></input><button class=class onclick=playoff() id='a'>Play</button><button onclick={document.getElementById("off").value=Math.round(Math.round(audio.currentTime/(60/document.getElementById("bpm").value))*(60/document.getElementById("bpm").value)*100)/100;resizeInput.call(inpdsut)} class=class>Update</button><p id=timeee></p>
 <hr>		
 Starting gamemode: <select class=29 id=gm>
 <option id=0>clckr</option>
@@ -26,10 +26,10 @@ Starting gamemode: <select class=29 id=gm>
 <option id=3>spmmr</option>
 <option id=4>ctrlr</option>
 </select><br>
-Click window: <input id="window" type=number max=500 min=0></input> ms
+Click window: <input autocomplete=off id="window" type=number max=500 min=0></input> ms
 <br>
-CPS floor: <input id=floor type=number max=20 min=1></input>
-CPS cap: <input id=cap type=number max=20 min=1></input>
+CPS floor: <input autocomplete=off id=floor type=number max=20 min=1></input>
+CPS cap: <input autocomplete=off id=cap type=number max=20 min=1></input>
 <br>
 <br>
 <button onclick=exists()>Create</button>
@@ -135,7 +135,7 @@ lsls=Math.round(document.getElementById("cap").value).toString().padStart(2,0)+M
 qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"޶޶޶"+lsls+"޶޶޶"+document.getElementById("song").value.slice(-7,-1)+Math.round(document.getElementById("off").value*100).toString().padStart(5,0)+"޶޶޶"+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"޶޶޶"
 
 localStorage.setItem("maps",localStorage.getItem("maps")+qw+"޶޶޶"+new Date()*1+"yours޶޶޶noth"+"杧杧杧")
-location.href="edit.html?id="+(localStorage.getItem("maps").split("杧杧杧").length-1)
+location.href="edit.html?id="+(localStorage.getItem("maps").split("杧杧杧").length-2)
 
 }
 if (error!="lol"){
@@ -172,6 +172,14 @@ getText("dksjdfksjfksjdksdjksfj")
 resizeInput.call(inpdut)
 stope()
 }
+// Source - https://stackoverflow.com/a/69025039
+// Posted by Shalom Alexander
+// Retrieved 2026-04-12, License - CC BY-SA 4.0
+
+
+
+//maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
+
 
 var input = document.getElementById("waa"); // get the input element
 input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
@@ -195,6 +203,8 @@ var vqvdinpdsut = document.getElementById("floor"); // get the input element
 vqvdinpdsut.addEventListener('input', resizeInpvut); // bind the "resizeInput" callback on "input" event
 resizeInput.call(vqvdinpdsut); // immediately call the function
 
+
+
 function resizeInput() {
   this.style.width = this.value.length*1+5 + "ch";
 }	
@@ -211,7 +221,12 @@ if (this.value.length*1+3<=40){
 else{
   this.style.width = "40ch"
   this.style.height = this.scrollHeight*1 + "px";
-}}
+
+}
+}
+
+
+
 
 function find(hh){
 r={'noth':'0000','fcfc':'10000'}
@@ -235,7 +250,7 @@ html{
 background-color:#101010;
 font-family: Verdana;
 color: white;
-font-size:20px;
+font-size:18px;
 }
 .e{
 float:right;
@@ -246,6 +261,7 @@ float: left;
 input{
 font-family: Verdana;
 border:none;
+font-size:18px;
 border-radius:5px;
 transition:0.3s ease-in-out;
 }
@@ -286,7 +302,7 @@ transition: 0.4s;
 color: #ec2d2d;
 }	
 input{
-font-size:25px;
+font-size:20px;
 margin:15px;
 min-width:50px;
 text-align:center;
