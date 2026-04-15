@@ -5,6 +5,7 @@
 
 
 <a href="index.html">< Back</a>
+<a id="we"></a>
 <div class=omega><div><h1 id="name"></h1>
 <button class=play onclick="gotothegame()">Go︎</button>
 <div class=huge>
@@ -62,6 +63,13 @@ location.href="play?id="+id
 //maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
 
 extract()
+if (mapperm[id][1].includes("y")){
+document.getElementById("we").innerHTML="Edit"
+document.getElementById("we").href="edit.html?id="+id
+}
+
+
+
 document.title=mapperm[id][0]+" - 1PIX"
 document.getElementById("name").innerHTML=mapperm[id][0]
 tot=0
@@ -208,5 +216,8 @@ a:hover{
 transition: 0.4s;
 
 color: #ec2d2d;
+}
+#we{
+float:right;	
 }
 </style>
