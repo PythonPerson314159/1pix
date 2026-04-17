@@ -2,54 +2,93 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <a href="index.html">< Back</a>
 <a id="we"></a>
 <div class=omega><div><h1 id="name"></h1>
 <button class=play onclick="gotothegame()">Go︎</button>
+<div id="wwwe">
+<a id="mem" onclick="sure()">Delete</a></div>
+
 <div class=huge>
 <div class=mega>Length: <strong id=0></strong></div>
 <div class=mega>Starts with <strong id=1></strong></div>
 </div>
 <div class=huge>
 <div class=mega>Best accuracy: <strong id=2></strong></div>
-<div class=mega>Average accuracy: <strong id=3></strong></div>
+<div class=mega>Difficulty <tiny>(According to mapper)</tiny>: <strong id=3></strong></div>
 </div>
 <div class=huge>
 <div class=mega>Attempts: <strong id=4></strong></div>
 <div class=mega>Click window: <strong id=5></strong></div>
 </div>
 <div class=huge>
-<div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div>
-<div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div>
-</div>
-<div class=huge>
-<div class=mega>Song: <strong id=8></strong> by <strong id=9></strong><tiny id=11></tiny></div>
-</div>
-<p style="display:none" id=10></p>
+<div class=mega>Song: <strong id=8></strong> by <strong id=9></strong></div>
+</div></div>
+<a class=space onclick="wh()">Advanced</a><br>
+<div id="www">
+
+</div	>
+
 <!--<button class=eee>More stats</button>-->
 </div></div>
 
 
 <script>
-async function getText() {
-
- fetch('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/dtb.txt')
-  .then(response => response.text())
-  .then(data =>
-document.getElementById("10").innerHTML=data.split("\n").map(item=>item.split(",")).filter(item=>item[0]==mapperm[id][8])[0]
-            ).then(something=>
-idk()
-)
+function sure(){
+Swal.fire({
+  title: "Are you sure?",
+  showCancelButton: true,
+  showDenyButton: true,
+  showConfirmButton: false,
+  denyButtonText: "Yes"
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+ if (result.isDenied){
+Swal.fire({
+  title: "Are you REALLY sure?",
+  showCancelButton: true,
+  showDenyButton: true,
+  showConfirmButton: false,
+  denyButtonText: "Yes"
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+ if (result.isDenied){
+Swal.fire({
+  title: "This level is probably peak, think deeply before you delete this!",
+  showCancelButton: true,
+  showDenyButton: true,
+  showConfirmButton: false,
+  denyButtonText: "Yes"
+}).then((result) => {
+  /* Read more about isConfirmed, isDenied below */
+ if (result.isDenied){
+ w=localStorage.getItem("maps").split("杧杧杧")
+w.splice(id,1)
+localStorage.setItem("maps",w.join("杧杧杧"))
+location.href="index.html"
+}});
+}});
+}});
 }
-async function idk(){
-            document.getElementById("8").innerHTML=document.getElementById("10").innerHTML.split(',')[1]
-            document.getElementById("9").innerHTML=document.getElementById("10").innerHTML.split(',')[2]
-            document.getElementById("11").innerHTML=" (ID: "+document.getElementById("10").innerHTML.split(',')[0]+")"
-}
-getText()
+function wh(){
+document.getElementById('www').innerHTML="<div class=huge><div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div><div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div></div	><div class=huge><div class=mega>BPM: <strong id=10></strong></div><div class=mega>Average accuracy: <strong id=12></strong></div></div><div class=huge><div class=mega>Gamemodes: <br><strong id=11></strong></div>"
+document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
+document.getElementById(12).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
 
+document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
+document.getElementById(10).innerHTML=mapperm[id][8].split("|||")[4]
+document.getElementById(11).innerHTML=[Math.floor(mapperm[id][7]**2/1000000/1000),blouh(mapperm[id][3].split('').map(item=>item.codePointAt(0)-1))].flat().reduce((all,one,i) => {
+   const ch = Math.floor(i/2); 
+   all[ch] = [].concat((all[ch]||[]),one); 
+   return all
+}, []).map(item=>["clckr","scrlr","swppr","spmmr","ctrlr"][item[0]]+" for "+Math.round(item[1]/100)/10+"s").join("<br>"+Math.round((mme[1].reduce((a,b)=>a+b)+1234)/100)/10+"s transition<br>")
+}
+
+function www(num){
+if (num<=11&&num>=0){return num}else if (num<=15&&num>=0){return "Extreme "+(num-11)} else{return "invalid"}
+}
 id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
 function gotothegame(){
 location.href="play?id="+id
@@ -68,6 +107,39 @@ document.getElementById("we").innerHTML="Edit"
 document.getElementById("we").href="edit.html?id="+id
 }
 
+function blouh(e){
+ee=[...e].map(item=>item*1)
+sum=0
+streak=0
+for (x=0;x<ee.length;x++){
+if (ee.slice(x,x+5).join("w")=="1000w0w1000w0w1000"){
+ee.splice(x,5,3000)
+}
+else if (ee.slice(x,x+3).join("w")=="1000w0w234"){
+ee.splice(x,3,1234)
+}
+}
+indices=[0]
+for (m in ee){
+if (ee[m]==3000||ee[m]==1234){
+indices.push(m*1)
+}
+}
+mme=[]
+indices.forEach(i => 
+mme.push(ee.slice(i,indices[indices.indexOf(i)*1+1]))
+  );
+  final=[]
+  for (r=0;r<mme.length;r++){
+  if (r%2==0){
+  final.push(mme[r].reduce((a,b)=>a+b)-(1234*(r!=0)))
+  }
+  else{
+  final.push(mme[r].length/2-1)
+  }
+  }
+  return final
+}
 
 
 document.title=mapperm[id][0]+" - 1PIX"
@@ -86,11 +158,11 @@ document.getElementById(2).innerHTML=Math.round(find(mapperm[id][2])[0]/100)+"%"
 if (find(mapperm[id][2])[0]==10000){
 document.getElementById(2).innerHTML="FC"
 }
-document.getElementById(3).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
+document.getElementById(3).innerHTML=www(parseInt(mapperm[id][9],16))+["*",""][((parseInt(mapperm[id][9],16)>=12)*1)]
 document.getElementById(4).innerHTML=Math.round(mapperm[id][2].length/4-1)
 document.getElementById(5).innerHTML=Math.round(mapperm[id][7]**2/1000000%1000)+" ms"
-document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
-document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
+document.getElementById(8).innerHTML=mapperm[id][8].split("|||")[1]
+document.getElementById(9).innerHTML=mapperm[id][8].split("|||")[2]
 
 function extract(){
 mapperm=[]
@@ -99,18 +171,20 @@ mapss=mapss.filter((x)=>x!='')
 for (x in mapss){
 io=mapss[x].split("޶޶޶")
 q=[]
-theid=io[3].slice(0,6)
+theid=io[3]
 
 q.push(io[0])
 q.push(io[6])
 //q.push((io[3].charCodeAt(0)-913)/10)
 q.push(io[7])
-q.push(io[4].slice(0,-5))
+q.push(io[4].slice(0,-6))
 q.push(io[2])
 q.push(io[1])
 q.push(x)
-q.push(io[4].slice(-5))
+q.push(io[4].slice(-6,-1))
 q.push(theid)
+q.push(io[4].slice(-1))
+
 mapperm.push(q)
 }
 }
@@ -184,6 +258,7 @@ font-size:12px;
 .omega{
 margin-top: 0px;
 text-align:center;
+
 }
 #bigbig{
 width:40%;
@@ -220,4 +295,22 @@ color: #ec2d2d;
 #we{
 float:right;	
 }
+#wwwe{
+margin-top:0px;
+margin-bottom:25px;
+}
+#mem{
+color:#f22d2d;
+transition:0.4s;
+
+float:center;text-align:center;	margin:0 auto;
+}
+#mem:hover{
+font-size:30px;transition:0.4s;
+}
+div{
+margin:10px;
+  transition: opacity 1s, display 1s allow-discrete;
+}
+
 </style>
