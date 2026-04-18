@@ -6,7 +6,7 @@
 
 <a href="index.html">< Back</a>
 <a id="we"></a>
-<div class=omega><div><h1 id="name"></h1>
+<div class=omega><div><h1 id="name"></h1><h3 id="mppr"></h3>
 <button class=play onclick="gotothegame()">Go︎</button>
 <div id="wwwe">
 <a id="mem" onclick="sure()">Delete</a></div>
@@ -73,8 +73,9 @@ location.href="index.html"
 }});
 }
 function wh(){
-document.getElementById('www').innerHTML="<div class=huge><div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div><div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div></div	><div class=huge><div class=mega>BPM: <strong id=10></strong></div><div class=mega>Average accuracy: <strong id=12></strong></div></div><div class=huge><div class=mega>Gamemodes: <br><strong id=11></strong></div>"
+document.getElementById('www').innerHTML="<div class=huge><div class=mega>Description: <strong id=116></strong></div></div><div class=huge><div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div><div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div></div	><div class=huge><div class=mega>BPM: <strong id=10></strong></div><div class=mega>Average accuracy: <strong id=12></strong></div></div><div class=huge><div class=mega>Gamemodes: <br><strong id=11></strong></div>"
 document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
+document.getElementById(116).innerHTML=mapperm[id][5].split("|||")[0]
 document.getElementById(12).innerHTML=Math.round(find(mapperm[id][2])[3]/100)+"%"
 
 document.getElementById(7).innerHTML=mapperm[id][4].slice(0,2)*1+" CPS"
@@ -87,7 +88,7 @@ document.getElementById(11).innerHTML=[Math.floor(mapperm[id][7]**2/1000000/1000
 }
 
 function www(num){
-if (num<=11&&num>=0){return num}else if (num<=15&&num>=0){return "Extreme "+(num-11)} else{return "invalid"}
+if (num<=11&&num>=0){return num}else if (num<=15&&num>=0){return "Extreme "+(num-11)} else{return "???"}
 }
 id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
 function gotothegame(){
@@ -144,6 +145,9 @@ mme.push(ee.slice(i,indices[indices.indexOf(i)*1+1]))
 
 document.title=mapperm[id][0]+" - 1PIX"
 document.getElementById("name").innerHTML=mapperm[id][0]
+sd=mapperm[id][5].split("|||")[1]
+if (sd==""){sd="???"}
+document.getElementById("mppr").innerHTML="By "+sd
 tot=0
 mapperm[id][3].split("").forEach((item)=>tot+=item.codePointAt(0)-1)
 tot/=1000
@@ -161,8 +165,12 @@ document.getElementById(2).innerHTML="FC"
 document.getElementById(3).innerHTML=www(parseInt(mapperm[id][9],16))+["*",""][((parseInt(mapperm[id][9],16)>=12)*1)]
 document.getElementById(4).innerHTML=Math.round(mapperm[id][2].length/4-1)
 document.getElementById(5).innerHTML=Math.round(mapperm[id][7]**2/1000000%1000)+" ms"
-document.getElementById(8).innerHTML=mapperm[id][8].split("|||")[1]
-document.getElementById(9).innerHTML=mapperm[id][8].split("|||")[2]
+ss=mapperm[id][8].split("|||")
+for (x in ss){
+if (ss[x]==""){ss[x]="???"}
+}
+document.getElementById(8).innerHTML=ss[1]
+document.getElementById(9).innerHTML=ss[2]
 
 function extract(){
 mapperm=[]
