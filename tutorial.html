@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Markdown Export</title>
+ 
+	<ul class=ul>	
+<li><a href="index.html" class="hipeoplelookingatthecode">Home</a></li>
+<li><a href='new.html' class="hipeoplelookingatthecode">Create</a></li>
+<li><a href='https://drive.google.com/drive/folders/1LmvzV_VcLkiQBtmdXfcs4lx90PJPprWj'>Browse</a></li>
+
+</ul>
+  
+<style>
+.ul {
+font-size:20px;
+margin:0 auto;
+  list-style-type: none;
+  
+  padding: 7;
+  background-color: #3333337f;
+  display: flex;
+  border-radius:10px;
+  width:600px;
+}
+
+.ul li a {
+  display: block;
+  padding: 5px 24px 14px;
+  margin-top:9px;
+  text-decoration: none;
+}
+
+.ul li a:hover {
+  background-color: #11111100;
+}
+
+input:focus, button:focus, textarea:focus {
+  outline: none;
+  border: none;
+}  	
+h1{
+color:#FFFFFF;
+text-align:center;
+}
+h2{
+color:#FFFFFF;
+text-align:center;
+}
+html{
+background-color:#101010;
+font-family: Verdana;
+color: white;
+line-height:24px;
+}
+li{
+margin:17px 0px;
+}
+input{
+font-family: Verdana;
+border:none;
+font-size:18px;
+border-radius:5px;
+transition:0.3s ease-in-out;
+}
+button{
+padding:10px;
+border: none;
+border-radius:10px;
+font-size:30px;
+transition: 0.3;
+}
+.p{
+font-size:12px;
+}
+a{
+color: #c4e8e8;
+text-decoration:none;
+transition: 0.4s;
+
+}
+a:hover{
+transition: 0.4s;
+
+color: #ec2d2d;
+}
+
+hr{
+width:300px;
+border-top:dotted;
+border-bottom:none;
+border-left:none;
+border-right:none;
+
+}
+.markdown-body{
+width:600px;
+background-color:#202020;
+padding:10px 25px;
+          text-align:left;
+}
+</style>
+</head>
+<body>
+<center>
+      <h1>1pix Guide</h1>
+  <div class="markdown-body">
+<h2>Welcome to 1pix!</h2>
+<p>Here's a quick guide on the game.</p><hr>
+<h2>Gameplay</h2>
+<h3>What is 1pix?</h3>
+<p>1pix is a rhythm game with a unique gimmick - your only graphic is a simple black or white pixel! Additionally, the game only requires a standard mouse to play - just left click, right click and scrolling.</p>
+<h3>Gamemodes</h3>
+<p>1pix has five gamemodes that require you to interact with the pixel in different ways. </p>
+<ol>
+<li><strong>clckr</strong> - Very simple. Click when the pixel is white, don't click when it's black.</li>
+<li><strong>scrlr</strong> - Similar to clckr, except you scroll down when it's white and scroll up when it's black.</li>
+<li><strong>swppr</strong> - Similar to clckr, except when on white, you alternate which mouse button you click from left to right and back again. The cycle always starts with right clicking. For a pattern of <em>black, white, black, white,</em> your mouse inputs should be <em>right, rest, left, rest</em>.</li>
+<li><strong>spmmr</strong> - Same as swppr, but instead you alternate between spamming the mouse buttons and scrolling up and down on the scroll wheel as fast as you can (pattern starts on mouse spamming).</li>
+<li><strong>ctrlr</strong> - More complicated and isn't used that much, so it isn't necessary to fully get the hang of this one. Starting at a specified click speed (called the CPS floor), when the pixel is white, you increase your click speed (up to the "CPS cap"), and when it's black, you decrease it. Hard to get the hang of, but rewarding when you do.</li>
+</ol>
+<h3>Indicators</h3>
+<p>In a 1pix map, there are two types of indicators - one for gamemode switching, and another for scoring (this one isn't necessary, though - more on that soon).</p>
+<h4>Gamemode indicator</h4>
+<p>For gamemode switching, there will be a 3 second run of black, followed by a certain number of white flashes, then a final 1.2 (ish) second stretch of black.</p>
+<p>How do you discern a mode transition from this? The number of white flashes is the gamemode that's being switched to, in the same order as above! For example, one flash means you'll be switching to clckr, two flashes means you'll be going to scrlr, and so on.</p>
+<h4>Scoring indicator</h4>
+<p>For scoring, the game scores you in accuracy out of 100%. By default, this is directly shown during gamemode transitions and at the end of maps. However, if you're planning on playing this game in its purest form, you'll need to know this following info.</p>
+<p>Just like the previous indicator, there will be a certain number of white flashes followed by a black rest. This will happen three times. Each of these bursts indicates a digit.</p>
+<p>If you have nine white flashes, a break, four, a break, then two, your accuracy will be 94.2%. If you FC a map, however, you'll be shown a solid white flash for five seconds. Congrats!</p>
+<h3>Play your first map</h3>
+<p>Head to the <a href="https://drive.google.com/drive/folders/1LmvzV_VcLkiQBtmdXfcs4lx90PJPprWj">Google Drive</a> to download a map (below 2 stars, preferably). Download it, then go back to the <a href="https://1pix.netlify.app">1pix homepage</a>, click "upload map", and pick the one you just downloaded. Upon clicking "Play", you'll be taken to a page with some stats. You're shown:</p>
+<ul>
+<li><strong>Map length</strong></li>
+<li><strong>Starting gamemode</strong>, to avoid having to do a whole transition procedure at the beginning of each map</li>
+<li><strong>Difficulty</strong>, from 0* to 11*, and from Extreme 1 to 4 (it's the mapper's opinion, though, so take it with a grain of salt)</li>
+<li><strong>Best accuracy</strong> (for you, not globally)</li>
+<li><strong>Attempt count</strong> - the number of times you've played the map</li>
+<li><strong>The click window</strong> - if all of your inputs are within this time of perfection, you'll get a full combo. Otherwise, each click is scored on how accurate it is and averaged.
+Song and artist</li>
+</ul>
+<p>If you click the dropdown, you can get more technical info, like the song's BPM, or the exact times of the gamemode transitions.</p>
+<p>Once you're ready, get your mouse out, click "Go", and enjoy playing through your very first 1pix map!</p><hr>
+<h2>Map Creation</h2>
+<h3>Setup</h3>
+<p>1pix offers you the ability to create your own maps. To get started, simply go to the homepage, click on "Create", and fill out the metadata needed. These things are:</p>
+<ul>
+<li><strong>Map name</strong></li>
+<li><strong>Map description</strong></li>
+<li><strong>Song</strong> - you'll have to get an external link for these, as 1pix doesn't have servers. The easiest solution is to host it through Github (more info in the FAQ)</li>
+<li><strong>Song offset</strong> - not needed, but if you want to start the song from a specific point that's not the beginning, you can play the song and click "Update" right when you want to start the song. You can also play it back to make sure the timing is right.</li>
+<li><strong>Song BPM</strong> - simply listen to the song, tap along to the beat with a BPM counter, and type the number in there.</li>
+<li><strong>Starting gamemode</strong></li>
+<li><strong>Click window</strong> - tighter windows (smaller number) will make the map's scoring stricter (and thus make the map harder), vice versa with more lenient windows.</li>
+<li><strong>CPS floor and cap</strong> - you shouldn't need to change this, as the default values are pretty balanced. Additionally, your map will likely not even be affected by these number. Nonetheless, spmmr is only affected by the CPS cap, where if the player's click speed is at or above the cap, they get full points. For ctrlr, the CPS floor and cap act as bounds for the drifting CPS target - it will always be between those two numbers (or at one of them).</li>
+<li><strong>Difficulty</strong> - you probably shouldn't be filling this out now, but after you've made some progress on your map, you can place your opinion on the map's difficulty. This game has a star system, from 0* to 11*, with the 12* category, Extreme, having four subtiers - Extreme 1 through Extreme 4 (keep in mind that these would be represented as 13 through 16 stars).</li>
+</ul>
+<p>Once you're done, click create!</p>
+<h3>Basic editor controls</h3>
+<p>The 1pix editor is where you create your levels. Unlike the gameplay, it's keyboard focused, with the main controls being:</p>
+<h4>Gameplay modification</h4>
+<ul>
+<li><strong>Left arrow</strong> - Add one beat to current run (of black or white)</li>
+<li><strong>Right arrow</strong> - Remove one beat from current run</li>
+<li><strong>Up arrow</strong> - Add 1/8 of a beat to current run</li>
+<li><strong>Down arrow</strong> - Remove 1/8 of a beat from current run</li>
+<li><strong>Space</strong> - New run (swap from black to white or from white to black)</li>
+<li><strong>Backspace</strong> - Delete previous run (if you're deleting a run in the middle of a map, keep in mind that this will invert all future runs, this can be circumvented by clicking <strong>Ctrl + Backspace</strong>)</li>
+<li><strong>1 through 5</strong> - Add a gamemode transition (1 is clckr, 2 is scrlr, 3 is swppr, 4 is spmmr, and 5 is ctrlr). Additionally, the game automatically sets the transition length to match with the song's beats so you never get off sync.</li>
+</ul>
+<h4>Playhead control</h4>
+<ul>
+<li><strong>A</strong> - Move playhead to previous run</li>
+<li><strong>D</strong> - Move playhead to next run</li>
+<li><strong>P</strong> - See a runthrough the map from the playhead (<strong>Ctrl + P</strong> to start from the beginning), it's not the actual gameplay (eg, no scoring) but just a preview</li>
+</ul>
+<h4>Quality of life</h4>
+<ul>
+<li><strong>Scroll up/down</strong> - Zoom in/out</li>
+<li><strong>Ctrl + scroll up/down</strong> - Scroll left/right</li>
+<li><strong>Ctrl + Z</strong> - Undo your last change (up to 25 changes can be reverted).</li>
+<li><strong>Ctrl + S</strong> - Save map - even though there are occasional autosaves, you should still do this!</li>
+</ul>
+<h3>Advanced editor controls</h3>
+<p>You can definitely build a maps only using the basic controls. However, you can also use these more advanced options:</p>
+<ul>
+<li><strong>Q</strong> - Remove 100ms from current run</li>
+<li><strong>E</strong> - Add 100ms to current run</li>
+<li><strong>Z</strong> - Remove 10ms from current run</li>
+<li><strong>C</strong> - Add 10ms to current run</li>
+<li><strong>X</strong> - Remove 1ms from current run</li>
+<li><strong>W</strong> - Add 1ms to current run</li>
+<li><strong>R</strong> - Record inputs - release your mouse to leave a trail of black and hold down to make it white. The recording is inserted at the playhead, and you can choose to snap the beats to every eighth, fourth, half, or full beat. Once it's inserted, you can click Backspace to delete the entire recorded chunk.</li>
+</ul>
+<p>You can change the metadata or download the level with the buttons on screen. Happy mapping!</p><hr>
+<h2>FAQ</h2>
+<h3>How do I upload songs to Github?</h3>
+<p>To do this, you have to</p>
+<ol>
+<li>Download the song's mp3 file</li>
+<li>Make a <a href="github.com">Github</a> account</li>
+<li>Create a repository</li>
+<li>Click on "uploading an existing file" (bottom of page)</li>
+<li>Upload the file</li>
+<li>Commit the changes</li>
+<li>Click on the file</li>
+<li>Right click "Raw", and</li>
+<li>Copy the link from there.</li>
+</ol>
+<h3>I think my map is good, how do I get it on the Google Drive?</h3>
+<p>Simply download it and email the .1pix file to me <a href="mailto:i.am.a.very.cool.person.29@gmail.com">here</a>. I may shift the difficulty rating around a bit but your map should be up soon after sending.</p>
+<hr>
+<h3>That's all you need to know to start playing 1pix. Have fun!</h3>
+
+  </div>
+  </center>
+</body>
+</html>
