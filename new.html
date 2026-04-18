@@ -14,10 +14,16 @@
 
 Name: <input autocomplete=off id="waa"></input><br>
 Description: <textarea id="desc"></textarea><br>
-Song: <input autocomplete=off id="song"></input><br>
-<input autocomplete=off type="number" class=c id="bpm" style=display:none></input>
+Mapper name: <input autocomplete=off id="mappr"></input><br><br>
+
+<hr>Song link: <input autocomplete=off id="song"></input><br>
+Song name: <input autocomplete=off id=songname></input>
+Song artist: <input autocomplete=off id=art></input><br>
+BPM: <input autocomplete=off type="number" class=c id="bpm" ></input>
 <div id=rhr></div>
-Song offset: <input autocomplete=off type="number" class=c id="off"></input><button class=class onclick=playoff() id='a'>Play</button><button onclick={document.getElementById("off").value=Math.round(Math.round(audio.currentTime/(60/document.getElementById("bpm").value))*(60/document.getElementById("bpm").value)*100)/100;resizeInput.call(inpdsut)} class=class>Update</button><p id=timeee></p>
+Song offset: <input autocomplete=off type="number" class=c id="off"></input><button class=class onclick=playoff() id='a'>Play</button><button onclick={if(document.getElementById("bpm").value!=""){kl=document.getElementById("bpm").value}else{kl=10000};document.getElementById("off").value=Math.round(Math.round(audio.currentTime/(60/kl))*(60/kl)*100)/100;resizeInpute.call(inpdsut)} class=class>Update</button><p id=timeee></p>
+Difficuly: <input autocomplete=off type="number" max=15 min=0 id="stars" ></input>stars
+
 <hr>		
 Starting gamemode: <select class=29 id=gm>
 <option id=0>clckr</option>
@@ -37,22 +43,21 @@ CPS cap: <input autocomplete=off id=cap type=number max=20 min=1></input>
 
 
 <script>
-
+dm="e"
 document.getElementById("floor").value=3
 document.getElementById("cap").value=12
-document.getElementById('song').addEventListener('input',function(e){
-getText(document.getElementById('song').value)
-
-         //do something else
-        });
 
 wiwwiw=983183939183
 function playoff(){
+if (typeof audio=="undefined"){
+audio = new Audio(document.getElementById('song').value)
+
+}
 if (wiwwiw!=document.getElementById('off').value){
 document.getElementById("a").innerHTML="Pause"
 
 audio.pause()
-audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+document.getElementById('song').value.slice(-7,-1)+".mp3")
+audio = new Audio(document.getElementById('song').value)
 audio.currentTime=document.getElementById("off").value*1
 audio.play()
   wiwwiw=document.getElementById('off').value
@@ -67,26 +72,13 @@ audio.pause()
 else{
 document.getElementById("a").innerHTML="Pause"
 
-audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+document.getElementById('song').value.slice(-7,-1)+".mp3")
+audio = new Audio(document.getElementById('song').value)
 audio.currentTime=document.getElementById("off").value*1
 audio.play()
 }
 }
 }
-async function getText(f) {
-if (f!=""&&f?.trim()&&f){
 
- fetch('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/dtb.txt')
-  .then(response => response.text())
-  .then(data =>
-            mm=(data.split("\n").slice(0,-1).filter(item=>item.split(",")[1].toLowerCase().includes(f.toLowerCase()))))
-.then(mm=>
-document.getElementById("rhr").innerHTML=mm.map(item=>"<button class=ww onmouseover=playe("+item.split(",")[0].toString()+") onmouseout=stope() onclick=whwh("+item.split(",")[0]+")>"+item.split(",")[1]+"</button>By "+item.split(",")[2]).join("<br>"))
-}
-else{
-document.getElementById("rhr").innerHTML=""
-}
-}
 
 document.getElementById("window").value=150
 var inpdsut = document.getElementById("off"); // get the input element
@@ -95,15 +87,12 @@ resizeInput.call(inpdsut); // immediately call the function
 
 
 async function exists(){
- fetch('https://raw.githubusercontent.com/iamaverycoolperson29/songs/refs/heads/main/dtb.txt')
-  .then(response => response.text())
-  .then(data =>
-data.split("\n").slice(0,-1).filter(item=>item.split(",")[0]==document.getElementById('song').value.slice(-7,-1)).length!=0
-)
-.then(mnnm=>things(mnnm))
+
+things()
 
 }
-function things(e){
+function things(){
+e=(false==isNaN(dm.duration))
 error="lol"
 if (document.getElementById("waa").value==""){
 error="Enter a name!"
@@ -114,8 +103,11 @@ error="Enter a click window!"
 else if (Math.abs(document.getElementById("window").value)>=500){
 error="Click window is too big! (must be under 500ms)"
 }
-else if (e==false){
-error="Invalid song!"
+else if (e==false&&document.getElementById("song").value!=""){
+error="Invalid song URL!"
+}
+else if (document.getElementById("bpm").value==""&&document.getElementById("song").value!=""){
+error='Enter a BPM! (search up "BPM counter")'
 }
 else if(document.getElementById("floor").value<=1||document.getElementById("floor").value>=20){
 error="CPS floor is out of range! (must be between 1 and 20 CPS)"
@@ -123,6 +115,9 @@ error="CPS floor is out of range! (must be between 1 and 20 CPS)"
 }
 else if(document.getElementById("cap").value<=1||document.getElementById("cap").value>=20){
 error="CPS cap is out of range! (must be between 1 and 20 CPS)"
+}
+else if((document.getElementById("stars").value<=0||document.getElementById("stars").value>=15)&&document.getElementById("stars").value!=""){
+error="Star count is out of range! (must be between 0 and 15)"
 }
 else{
 if (Math.round(document.getElementById("cap").value)<=Math.round(document.getElementById("floor").value)){
@@ -132,7 +127,10 @@ else{
 lsls=Math.round(document.getElementById("cap").value).toString().padStart(2,0)+Math.round(document.getElementById("floor").value).toString().padStart(2,0)
 
 }
-qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"޶޶޶"+lsls+"޶޶޶"+document.getElementById("song").value.slice(-7,-1)+Math.round(document.getElementById("off").value*100).toString().padStart(5,0)+"޶޶޶"+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"޶޶޶"
+nm=document.getElementById("stars").value
+if (nm==""){nm=16}
+qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"|||"+document.getElementById("mappr").value+"޶޶޶"+lsls+"޶޶޶"+[document.getElementById("song").value,document.getElementById("songname").value,document.getElementById("art").value,Math.round(document.getElementById("off").value*100).toString().padStart(5,0),document.getElementById("bpm").value].join("|||")+"޶޶޶"+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"0123456789abcdef!"[Math.round(nm)]+"޶޶޶"
+console.log(qw)
 
 localStorage.setItem("maps",localStorage.getItem("maps")+qw+"޶޶޶"+new Date()*1+"yours޶޶޶noth"+"杧杧杧")
 location.href="edit.html?id="+(localStorage.getItem("maps").split("杧杧杧").length-2)
@@ -149,13 +147,10 @@ theme:"dark",
 }
 }
 id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
-function gotothegame(){
-location.href="play?id="+id
-}
 
-function playe(idi){
-idid=idi.toString().padStart(6,0)
-audio = new Audio("https://github.com/iamaverycoolperson29/songs/raw/refs/heads/main/"+idid+".mp3");
+
+function playe(){
+audio = new Audio(document.getElementById("song").value);
 audio.play();   
 }
 
@@ -164,14 +159,6 @@ audio.pause()
 audio.currentTime=0
 }
 
-function whwh(idid){
-whe=mm.filter(item=>item.split(",")[0]==idid)[0].split(",")
-document.getElementById('song').value=whe[1]+' by '+whe[2]+" (ID: "+whe[0]+")"
-document.getElementById('bpm').value=whe[3]*1
-getText("dksjdfksjfksjdksdjksfj")
-resizeInput.call(inpdut)
-stope()
-}
 // Source - https://stackoverflow.com/a/69025039
 // Posted by Shalom Alexander
 // Retrieved 2026-04-12, License - CC BY-SA 4.0
@@ -181,11 +168,23 @@ stope()
 //maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
 
 
+var nput = document.getElementById("bpm"); // get the input element
+nput.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(nput); // immediately call the function
+var put = document.getElementById("mappr"); // get the input element
+put.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(put); // immediately call the function
+var ut = document.getElementById("songname"); // get the input element
+ut.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(ut); // immediately call the function
+var td = document.getElementById("art"); // get the input element
+td.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(td); // immediately call the function
 var input = document.getElementById("waa"); // get the input element
 input.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
 resizeInput.call(input); // immediately call the function
 var inpdut = document.getElementById("song"); // get the input element
-inpdut.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+inpdut.addEventListener('input', resizeInpudt); // bind the "resizeInput" callback on "input" event
 resizeInput.call(inpdut); // immediately call the function
 var inpdsut = document.getElementById("off"); // get the input element
 inpdsut.addEventListener('input', resizeInpute); // bind the "resizeInput" callback on "input" event
@@ -202,7 +201,9 @@ resizeInput.call(qvdinpdsut); // immediately call the function
 var vqvdinpdsut = document.getElementById("floor"); // get the input element
 vqvdinpdsut.addEventListener('input', resizeInpvut); // bind the "resizeInput" callback on "input" event
 resizeInput.call(vqvdinpdsut); // immediately call the function
-
+var NOMORE = document.getElementById("stars"); // get the input element
+NOMORE.addEventListener('input', resizeInput); // bind the "resizeInput" callback on "input" event
+resizeInput.call(NOMORE); // immediately call the function
 
 
 function resizeInput() {
@@ -225,7 +226,11 @@ else{
 }
 }
 
-
+function resizeInpudt() {
+  this.style.width = this.value.length*1+5 + "ch";
+  
+dm=new Audio(document.getElementById('song').value)
+}	
 
 
 function find(hh){
@@ -261,8 +266,9 @@ float: left;
 input{
 font-family: Verdana;
 border:none;
-font-size:18px;
+font-size:15px;
 border-radius:5px;
+padding:5px;
 transition:0.3s ease-in-out;
 }
 button{
@@ -322,12 +328,14 @@ color:#ffffff;
 color:#ff6666;	
 }
 option{
-font-size:25px;
+font-size:20px;
 text-align:center;
 
 }
 select{
-font-size:25px;
+font-size:20px;
+font-family:Verdana;
+border-radius:5px;
 }
 .class{
 font-size:20px;
@@ -353,7 +361,7 @@ input[type=number] {
 textarea {
 font-family:Verdana;
 border-radius:5px;
-
+padding:2px;
 font-size:20px;
 min-width:50px;
 text-align:center;
