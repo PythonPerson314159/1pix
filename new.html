@@ -1,7 +1,5 @@
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<!--add cps cap and floor, embed editor, done-->
-
 <head>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
@@ -10,7 +8,7 @@
 
 <a href="index.html">< Back</a>
 <div class=omega><h1 id="name"></h1>
-<h1>Create New Map</h1>
+<h1 id=klk>Create New Map</h1>
 
 Name: <input autocomplete=off id="waa"></input><br>
 Description: <textarea id="desc"></textarea><br>
@@ -38,7 +36,7 @@ CPS floor: <input autocomplete=off id=floor type=number max=20 min=1></input>
 CPS cap: <input autocomplete=off id=cap type=number max=20 min=1></input>
 <br>
 <br>
-<button onclick=exists()>Create</button>
+<button onclick=exists() id="sjsj">Create</button>
 </div>
 
 
@@ -129,10 +127,23 @@ lsls=Math.round(document.getElementById("cap").value).toString().padStart(2,0)+M
 }
 nm=document.getElementById("stars").value
 if (nm==""){nm=16}
-qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"|||"+document.getElementById("mappr").value+"޶޶޶"+lsls+"޶޶޶"+[document.getElementById("song").value,document.getElementById("songname").value,document.getElementById("art").value,Math.round(document.getElementById("off").value*100).toString().padStart(5,0),document.getElementById("bpm").value].join("|||")+"޶޶޶"+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"0123456789abcdef!"[Math.round(nm)]+"޶޶޶"
+gp=''
+if (id!="none"){
+gp=localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[4].slice(0,-6)
+}
+qw=document.getElementById('waa').value+"޶޶޶"+document.getElementById('desc').value+"|||"+document.getElementById("mappr").value+"޶޶޶"+lsls+"޶޶޶"+[document.getElementById("song").value,document.getElementById("songname").value,document.getElementById("art").value,Math.round(document.getElementById("off").value*100).toString().padStart(5,0),document.getElementById("bpm").value].join("|||")+"޶޶޶"+gp+Math.round((["clckr","scrlr","swppr","spmmr","ctrlr"].indexOf(document.getElementById("gm").value)*1000+document.getElementById("window").value*1)**0.5*1000).toString().padStart(5,0)+"0123456789abcdef!"[Math.round(nm)]+"޶޶޶"
 console.log(qw)
 
+if (id=="none"){
 localStorage.setItem("maps",localStorage.getItem("maps")+qw+"޶޶޶"+new Date()*1+"yours޶޶޶noth"+"杧杧杧")
+}
+else{
+kaj=localStorage.getItem("maps").split("杧杧杧")
+kaj[id]=qw+"޶޶޶"+new Date()*1+"yours޶޶޶"+kaj[id].split("޶޶޶")[7]
+localStorage.setItem("maps",kaj.join("杧杧杧"))
+
+}
+
 location.href="edit.html?id="+(localStorage.getItem("maps").split("杧杧杧").length-2)
 
 }
@@ -146,13 +157,48 @@ theme:"dark",
   })
 }
 }
+
+addEventListener("load", (event) => { })
+
+onload = (event) => {window.onload=resizeInpvut.call(document.getElementById("desc")); }
+ // immediately call the function
+
 id=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+if (id*1!=id){id="none"}
+else{
+jdj=localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[6]+""
+if(jdj.includes("yours")==false){
+location.href="new.html"
+}
+
+document.getElementById("sjsj").innerHTML="Update"
+document.getElementById("klk").innerHTML="Edit metadata"
+
+elid("waa",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[0])
+elid("desc",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[1].split("|||")[0])
+elid("mappr",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[1].split("|||")[1])
+elid("song",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[3].split("|||")[0])
+elid("songname",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[3].split("|||")[1])
+elid("art",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[3].split("|||")[2])
+elid("bpm",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[3].split("|||")[4])
+elid("off",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[3].split("|||")[3]/100)
+elid("stars",parseInt(localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[4].slice(-1),16))
+elid("gm",["clckr","scrlr","swppr","spmmr","ctrlr"][Math.floor(localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[4].slice(-6,-1)**2/1000000000)])
+elid("window",Math.round(localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[4].slice(-6,-1)**2/1000000%1000))
+elid("floor",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[2].slice(2,4)*1)
+elid("cap",localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[2].slice(0,2)*1)
+if (parseInt(localStorage.getItem("maps").split("杧杧杧")[id].split("޶޶޶")[4].slice(-1),16).toString()=="NaN"){elid("stars","")}
+
+resizeInpvut.call(document.getElementById("desc")); // immediately call the function
+}
+dm=new Audio(document.getElementById('song').value)
 
 
 function playe(){
 audio = new Audio(document.getElementById("song").value);
 audio.play();   
 }
+function elid(a,b){document.getElementById(a).value=b}
 
 function stope(){
 audio.pause()
@@ -218,6 +264,8 @@ document.getElementById("a").innerHTML="Play"
 function resizeInpvut() {
 if (this.value.length*1+3<=40){
   this.style.width = this.value.length*1+5 + "ch";
+  this.style.height = "38px";
+  
 }	
 else{
   this.style.width = "40ch"
@@ -361,12 +409,14 @@ input[type=number] {
 textarea {
 font-family:Verdana;
 border-radius:5px;
-padding:2px;
+padding-top:6px;
+padding-bottom:6px;
+
 font-size:20px;
 min-width:50px;
 text-align:center;
 resize: none; 
-height:30px;
+height:38px;
 
     /* Hide scrollbar in WebKit (Chrome, Safari, newer Opera) */
     &::-webkit-scrollbar {
