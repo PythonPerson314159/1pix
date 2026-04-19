@@ -4,11 +4,19 @@
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-<a href="index.html">< Back</a>
-<a id="we"></a>
+
+
+<ul class=ul>	
+<li><a href="index.html">Back</a></li>
+<li><a href='new.html'>Create</a></li>
+<li><a id="we"></a></li>
+<li><a id="wea"></a></li>
+</ul>
+
 <div class=omega><div><h1 id="name"></h1><h3 id="mppr"></h3>
 <button class=play onclick="gotothegame()">Go︎</button>
 <div id="wwwe">
+<a onclick=dw()>Download</a> or 
 <a id="mem" onclick="sure()">Delete</a></div>
 
 <div class=huge>
@@ -36,6 +44,18 @@
 
 
 <script>
+function dw(){
+    const text = mapss[id].split("޶޶޶").slice(0,6).join('޶޶޶') ;
+    const element = document.createElement('a');
+    const file = new Blob([text], {type: 'text/plain'});
+    element.href = URL.createObjectURL(file);
+    element.download = document.getElementById("name").innerHTML.split(" ").join("_")
++".1pix";
+    document.body.appendChild(element);
+    element.click();
+    document.body.removeChild(element);
+  
+  }
 function sure(){
 Swal.fire({
   title: "Are you sure?",
@@ -60,7 +80,8 @@ Swal.fire({
   showCancelButton: true,
   showDenyButton: true,
   showConfirmButton: false,
-  denyButtonText: "Yes"
+  denyButtonText: "I did!",
+  cancelButtonText: "Wait, no!"
 }).then((result) => {
   /* Read more about isConfirmed, isDenied below */
  if (result.isDenied){
@@ -73,6 +94,10 @@ location.href="index.html"
 }});
 }
 function wh(){
+if(document.getElementById('www').innerHTML!="\n\n"){
+document.getElementById('www').innerHTML="\n\n"
+}
+else{
 document.getElementById('www').innerHTML="<div class=huge><div class=mega>Description: <strong id=116></strong></div></div><div class=huge><div class=mega>CPS floor <tiny>(ctrlr)</tiny>: <strong id=6></strong></div><div class=mega>CPS cap <tiny>(spmmr and ctrlr)</tiny>: <strong id=7></strong></div></div	><div class=huge><div class=mega>BPM: <strong id=10></strong></div><div class=mega>Average accuracy: <strong id=12></strong></div></div><div class=huge><div class=mega>Gamemodes: <br><strong id=11></strong></div>"
 document.getElementById(6).innerHTML=mapperm[id][4].slice(2,4)*1+" CPS"
 document.getElementById(116).innerHTML=mapperm[id][5].split("|||")[0]
@@ -84,7 +109,8 @@ document.getElementById(11).innerHTML=[Math.floor(mapperm[id][7]**2/1000000/1000
    const ch = Math.floor(i/2); 
    all[ch] = [].concat((all[ch]||[]),one); 
    return all
-}, []).map(item=>["clckr","scrlr","swppr","spmmr","ctrlr"][item[0]]+" for "+Math.round(item[1]/100)/10+"s").join("<br>"+Math.round((mme[1].reduce((a,b)=>a+b)+1234)/100)/10+"s transition<br>")
+}, []).map(item=>["clckr","scrlr","swppr","spmmr","ctrlr"][item[0]]+" for "+Math.round(item[1]/100)/10+"s").join("<br>"+/*Math.round((mme[0].reduce((a,b)=>a+b)+1234)/100)/10+"s"+*/"Gamemode transition<br>")
+}
 }
 
 function www(num){
@@ -103,9 +129,11 @@ location.href="play?id="+id
 //maps=[["Map 0000000",49,10.67,191919],["sup3r 3p1c l3v3l",9,4,919191],["SUPER IMPOSSIBLE",0.9,17,112334]]
 
 extract()
-if (mapperm[id][1].includes("y")){
+if (mapperm[id][1].includes("yours")){
 document.getElementById("we").innerHTML="Edit"
 document.getElementById("we").href="edit.html?id="+id
+document.getElementById("wea").innerHTML="Change metadata"
+document.getElementById("wea").href="new.html?id="+id
 }
 
 function blouh(e){
@@ -133,6 +161,7 @@ mme.push(ee.slice(i,indices[indices.indexOf(i)*1+1]))
   final=[]
   for (r=0;r<mme.length;r++){
   if (r%2==0){
+  
   final.push(mme[r].reduce((a,b)=>a+b)-(1234*(r!=0)))
   }
   else{
@@ -320,5 +349,25 @@ div{
 margin:10px;
   transition: opacity 1s, display 1s allow-discrete;
 }
+.ul {
+margin:0 auto;
+  list-style-type: none;
+  max-width:650px;
+  padding: 7;
+  background-color: #3333337f;
+  display: flex;
+  border-radius:10px;
+  
+}
 
+.ul li a {
+  display: block;
+  padding: 5px 24px 14px;
+  margin-top:9px;
+  text-decoration: none;
+}
+
+.ul li a:hover {
+  background-color: #11111100;
+}
 </style>
