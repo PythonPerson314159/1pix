@@ -34,12 +34,12 @@ sortt()
 }
 
 </script>
-<div class=class>	
-<button onclick="document.getElementById('mapsel').click()" class="hipeoplelookingatthecode">Upload map</button>
-  <div style="width: 100px;"></div> <!-- placeholder; important to give it some width-->
-<button onclick="location.href='new.html'" class="hipeoplelookingatthecode0">Create map</button>
+<ul class=ul>	
+<li><a href="tutorial.html">How to play</a></li>
+<li><a onclick="document.getElementById('mapsel').click()">Upload</a></li>
+<li><a href='new.html'>Create</a></li>
 
-</div>
+</ul>
 <div class=top>
 <h1>1PIX</h1>
 Sort by
@@ -89,7 +89,10 @@ q.push(io[4].slice(0,-5))
 q.push(io[2])
 q.push(io[1])
 q.push(x)
-q.push(io[4].slice(-5))
+q.push(parseInt(io[4].slice(-1),16))
+if (io[4].slice(-1)=="!"){
+q[7]="199"
+}
 mapperm.push(q)
 }
 }
@@ -104,7 +107,7 @@ if (one==one%2){
 maps.sort((a,b)=>b[6].replace(/\D/g, '')-a[6].replace(/\D/g, ''))
 }
 if (one-one%2==2){
-maps.sort((a,b)=>b[2]-a[2])
+maps.sort((a,b)=>b[7]*((b[7]!=199))-a[7]*((a[7]!=199)))
 }
 if (one-one%2==4){
 maps.sort((a,b)=>b[7]-a[7])
@@ -123,6 +126,9 @@ maps.sort(function (a, b) {
 
 if (one%2==1){
 maps.reverse()
+if (one=3){
+maps.sort((a,b)=>a[7]*((a[7]==199)+1)-b[7]*((b[7]==199)+1))
+}
 }
 
 tot=''
@@ -135,13 +141,15 @@ difff="Extreme"
 }
 
 bestt=Math.round(find(maps[x][2])[0]/100)
-
-tot+="<div class=mega id="+x+" onclick=''><span class='a'><big>"+maps[x][0]+"</big><br>"+bestt+"% acc.</span><span class=e><button onclick=location.href='view.html?id="+maps[x][6]+"' >Play<br><tiny>"+["","or edit"][maps[x][1].includes("y")*1]+"</tiny></button></span></div>"
+mppr=maps[x][5].split("|||")[1]
+if (mppr==""){mppr="???"}
+tot+="<div class=mega id="+x+" onclick=''><span class='a'><span class=d><big>"+maps[x][0]+"</big> By&nbsp;"+mppr+"</span><span>"+translatee(maps[x][7])+"</span><br><tiny>"+bestt+"% acc.</tiny><br></span><span class=e><button onclick=location.href='view.html?id="+maps[x][6]+"' >Play<br><tiny>"+["","or edit"][maps[x][1].includes("yours")*1]+"</tiny></button></span></div>"
 }
 
 document.getElementById("bigbig").innerHTML=tot
 }
 
+function translatee(e){if(e==199){return ""}else if (e<=11){return "<br>"+e+"*"}else{return "<br>Extreme "+(e-12)}}
 
 /*function ext(e){
 tot=0
@@ -176,12 +184,15 @@ font-size:20px;
 }
 .e{
 float:right;
+
 }
 .a{
 float: left;
+max-width:400px;
+overflow-wrap: break-word;
 }
 big{
-font-size: 35px;
+font-size: 30px;
 }
 select{
 font-family: Verdana;
@@ -217,16 +228,14 @@ color: #f3f3f3;
 border-radius:10px;
 }
 .mega{
-margin-left: calc(50% - 200px);
 margin-bottom: 2vh;
 margin-top: 2vh;
-padding:10px;
-height:100px;
+padding:15px;
+height:auto;
 color: #000000;
 border-radius:10px;
-width: 400px;
 background-color: #a0a0a0;
-transition: height 0.3s;
+overflow:hidden;
 }
 .p{
 font-size:12px;
@@ -236,45 +245,13 @@ font-size:12px;
 text-align:center;
 }
 #bigbig{
-width:40%;
-margin-left: 30%;
+width:600px;	
+margin:0 auto;
 padding:  40px 0 40px 0;
 background-color:#00000000;
 }
 #mapsel{
 display:none;
-}
-.hipeoplelookingatthecode{
-height:40px;
-font-size:19px;
-width:140px;
-float:left;
-color: #c4e8e8;
-background-color:#00000000;
-transition: 0.4s;
-}
-.hipeoplelookingatthecode:hover{
-
-transition: 0.4s;
-background-color:#00000000;
-color: #ec2d2d;
-}
-
-
-.hipeoplelookingatthecode0{
-height:40px;
-font-size:19px;
-width:140px;
-float:right;
-color: #c4e8e8;
-background-color:#00000000;
-transition: 0.4s;
-}
-.hipeoplelookingatthecode0:hover{
-
-transition: 0.4s;
-background-color:#00000000;
-color: #ec2d2d;
 }
 
 .class{  display: flex; justify-content: space-between;
@@ -282,6 +259,37 @@ color: #ec2d2d;
 h1{
 color:#FFFFFF;
 text-align:center;
+}
+.ul {
+margin:0 auto;
+  list-style-type: none;
+  max-width:650px;
+  padding: 7;
+  background-color: #3333337f;
+  display: flex;
+  border-radius:10px;
+}
+
+.ul li a {
+  display: block;
+  padding: 10px 14px 10px;
+  text-decoration: none;
+}
+
+.ul li a:hover {
+  background-color: #11111100;
+}
+
+a{
+color: #c4e8e8;
+text-decoration:none;
+transition: 0.4s;
+
+}
+a:hover{
+transition: 0.4s;
+
+color: #ec2d2d;
 }
 </style>
 </html>
