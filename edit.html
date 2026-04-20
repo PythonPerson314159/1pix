@@ -7,10 +7,10 @@
 </head>
     
 <ul class=ul>	
-<li><a href="index.html">Home</a></li>
 <li><a id=ed>Edit metadata</a></li>
 <li><a id=view>View & download</a></li>
-<li><a href="tutorial.html#basiccontrols">Editor controls</a></li>
+<li><a href="tutorial.html#basiccontrols">Editor Controls</a></li>
+<li><a href="index.html">Home</a></li>
 <li><a id="wea"></a></li>
 </ul>    
 <center>
@@ -19,17 +19,18 @@
           <div id="canvas-container"></div>
 
     <script>
+      
+
 idid=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
 file=localStorage.getItem("maps").split('杧杧杧')[idid]
-      if (file.includes("yours")==false){
-        location.href="view.html?id="+idid
-      }
 
 document.getElementById("ed").href="new.html?id="+idid
 document.getElementById("view").href="view.html?id="+idid
       
+      if (file.includes("yours")==true){
+        location.href="view.html?id="+parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+      }
       document.getElementById("ert").innerHTML="Editing "+'"'+file.split("޶޶޶")[0]+'"'
-      document.title="Editing "+'"'+file.split("޶޶޶")[0]+'" - 1PIX'
 function preload(){
    soundFormats('mp3', 'ogg');
   if(file.split("޶޶޶")[3].split("|||")[0]!=""){
@@ -131,12 +132,13 @@ function draw() {
   }
   if (focus==-1){
     focuspoint=0
+    focus=0
   }
 fill(255,0,0)
   if (patt[focus]==0){
     fill(0,255,0)
   }
-    circle(max(focuspoint,5),50,10)
+    circle(max(focuspoint,5),40,10)
   stroke(120)
   fill(255)
   textSize(20)
@@ -208,23 +210,7 @@ function keyPressed(){
     bpmf=60
   }
   if (rec==0&&playback==0){
-  if (keyIsDown(CONTROL) && key == 'z'){
-    if (nest<=prevstates.length-2){
-    nest+=1
-    patt=prevstates[prevstates.length-nest-1]
-  }}
-    else{
-    nest=-1
-    if (prevstates.length>=25){
-  prevstates=prevstates.slice(1)
-  prevstates.push([...patt])
-    }
-    else{
-      if (prevstates.length==0||(patt.join(",")!=prevstates[prevstates.length-1].join(','))){
-      prevstates.push([...patt])
-      }
-    }
-  }
+  
   if ("ArrowRight"==key){
     patt[focus]+=60000/bpmf
   }
@@ -303,57 +289,7 @@ function keyPressed(){
     splice(patt,[3000,ins,1234].flat(),focus)
     patt=patt.flat()
   }
-  }
-  
-  
-   if (key.toLowerCase()=="p"){
-     if (playback!=0){
-       playback=0
-     }
-     else{
-      playback=1+keyIsDown(CONTROL)*1
-       
-     }
-    if (playback>=1){
-      offf=millis()
-    mySound.jump(focuspoint/100)
-   mySound.play() 
-    }
-    else{
-      mySound.stop()
-    }
-     return false;
-   }
-   if (key.toLowerCase()=="r"){
-    
-    rec+=1
-    rec%=2
-    if (rec==1){
-      mySound.play()
-      mySound.jump(focuspoint/100)
-      if (focus!=0){
-      focus+=1
-      }
-      startrec=focus
-      print(focus)
-      patt.splice(focus,0,0)
-      temp=[]
-    }
-    else{
-      mySound.stop()
-      
-snap=[...patt].splice(startrec,focus-startrec+1)
-        snap=snap.map(item=>round(item/(60000/bpm/8))*60000/bpm/8)
-      patt.splice(startrec,focus-startrec+1)
-      
-      patt.splice(startrec,0,snap)
-      patt=patt.flat()
-    focus+=1
-    patt.splice(focus,0,0)
-      print(startrec)
-    }
-  }
-  else if (key=="Backspace"){
+    else if (key=="Backspace"){
     if (lask=="r"&&rec==0){
       patt.splice(startrec,focus-startrec+1)
       focus=startrec
@@ -379,6 +315,82 @@ patt.splice(focus*1,1)
   if (patt[focus]>3000&&patt[focus]!=3499){
     patt[focus]=3000
    // print("Invalid - too long!")
+  }
+  
+    
+    if (keyIsDown(CONTROL) && key == 'z'){
+    if (nest<=prevstates.length-2){
+    nest+=1
+    patt=prevstates[prevstates.length-nest-1]
+  }}
+    else{
+    nest=-1
+    if (prevstates.length>=25){
+  prevstates=prevstates.slice(1)
+  prevstates.push([...patt])
+    }
+    else{
+      if (prevstates.length==0||(patt.join(",")!=prevstates[prevstates.length-1].join(','))){
+      prevstates.push([...patt])
+      }
+    }
+  }
+kaj=localStorage.getItem("maps").split("杧杧杧")
+kaj[idid]=kaj[idid].split("޶޶޶")
+kaj[idid][4]=wordify(patt)+kaj[idid][4].slice(-6)
+kaj[idid]=kaj[idid].join("޶޶޶")
+kaj=kaj.join("杧杧杧")
+localStorage.setItem("maps",kaj)    
+  }
+  
+  
+  
+   if (key.toLowerCase()=="p"){
+     if (playback!=0){
+       playback=0
+     }
+     else{
+      playback=1+keyIsDown(CONTROL)*1
+       
+     }
+    if (playback>=1){
+      offf=millis()
+    mySound.jump((focuspoint/zoom-scroll/10)*10/1000)
+   mySound.play() 
+    }
+    else{
+      mySound.stop()
+    }
+     return false;
+   }
+   if (key.toLowerCase()=="r"){
+    
+    rec+=1
+    rec%=2
+    if (rec==1){
+      mySound.play()
+      mySound.jump((focuspoint/zoom-scroll/10)*10/1000)
+      if (focus!=0){
+      focus+=1
+      }
+      startrec=focus
+      print(focus)
+      patt.splice(focus,0,0)
+      temp=[]
+    }
+    else{
+      mySound.stop()
+      
+snap=[...patt].splice(startrec,focus-startrec+1)
+        snap=snap.map(item=>round(item/(60000/bpm/8))*60000/bpm/8)
+      patt.splice(startrec,focus-startrec+1)
+      
+      patt.splice(startrec,0,snap)
+      patt=patt.flat()
+    focus+=1
+    patt.splice(focus,0,0)
+      print(startrec)
+    }
   }
   
   lask=key
@@ -432,8 +444,7 @@ thinn.push(pat[w]%1000)
   }
   inv=0
   pat=pat.flat()
-  wordd=pat.map(item=>String.fromCharCode(item+1)).join('')
-  dw(wordd)
+  return pat.map(item=>String.fromCharCode(item+1)).join('')
 }
 
 const dw = (content) => {
@@ -463,6 +474,13 @@ background-color:#101010;
 font-family: Verdana;
 color: white;
 font-size:20px;
+}
+}
+.p{
+font-size:12px;
+}
+tiny{
+font-size:14px;
 }
 a{
 color: #c4e8e8;
