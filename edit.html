@@ -31,6 +31,7 @@ document.getElementById("view").href="view.html?id="+idid
         location.href="view.html?id="+parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
       }
       document.getElementById("ert").innerHTML="Editing "+'"'+file.split("޶޶޶")[0]+'"'
+      document.title="Editing "+'"'+file.split("޶޶޶")[0]+'" - 1PIX'
 function preload(){
    soundFormats('mp3', 'ogg');
   if(file.split("޶޶޶")[3].split("|||")[0]!=""){
@@ -228,7 +229,7 @@ function keyPressed(){
     patt[focus]=constrain(patt[focus],0,Infinity)
     
   }
-  else if (key=="Enter"){
+  else if (key==" "){
       focus+=1
     
     patt.splice(focus,0,0)
@@ -299,8 +300,8 @@ patt.splice(focus,1)
   if (keyIsDown(CONTROL)){
       patt[focus-1]=patt[focus]+patt[focus*1-1]
 patt.splice(focus*1,1)
-      focus-=1
   }
+              focus-=1
   }
   }
   if (key!="Control"){
