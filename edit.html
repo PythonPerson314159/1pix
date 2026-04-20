@@ -7,10 +7,10 @@
 </head>
     
 <ul class=ul>	
+<li><a href="index.html">Home</a></li>
 <li><a id=ed>Edit metadata</a></li>
 <li><a id=view>View & download</a></li>
-<li><a href="tutorial.html#basiccontrols">Editor Controls</a></li>
-<li><a href="index.html">Home</a></li>
+<li><a href="tutorial.html#basiccontrols">Editor controls</a></li>
 <li><a id="wea"></a></li>
 </ul>    
 <center>
@@ -19,8 +19,8 @@
           <div id="canvas-container"></div>
 
     <script>
-file=localStorage.getItem("maps").split('杧杧杧')[idid]
 idid=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
+file=localStorage.getItem("maps").split('杧杧杧')[idid]
       if (file.includes("yours")==false){
         location.href="view.html?id="idid
       }
