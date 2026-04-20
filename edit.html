@@ -22,13 +22,14 @@
 idid=parent.document.URL.substring(parent.document.URL.indexOf('?')+4, parent.document.URL.length);
 file=localStorage.getItem("maps").split('杧杧杧')[idid]
       if (file.includes("yours")==false){
-        location.href="view.html?id="idid
+        location.href="view.html?id="+idid
       }
 
 document.getElementById("ed").href="new.html?id="+idid
 document.getElementById("view").href="view.html?id="+idid
       
       document.getElementById("ert").innerHTML="Editing "+'"'+file.split("޶޶޶")[0]+'"'
+      document.title="Editing "+'"'+file.split("޶޶޶")[0]+'" - 1PIX'
 function preload(){
    soundFormats('mp3', 'ogg');
   if(file.split("޶޶޶")[3].split("|||")[0]!=""){
